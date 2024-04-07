@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://ce8c7vpuakoww"]
+
+[ext_resource type="Texture2D" uid="uid://cbw2ymo7s248t" path="res://assets/queen_s.png" id="1_07c4o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6i8wr"]
+size = Vector2(100, 100)
+
+[node name="Queen" type="RigidBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_6i8wr")
+
+[node name="QueenS" type="Sprite2D" parent="CollisionShape2D"]
+texture = ExtResource("1_07c4o")

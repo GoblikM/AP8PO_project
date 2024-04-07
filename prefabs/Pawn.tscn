@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://dabasjpptm7f7"]
+
+[ext_resource type="Texture2D" uid="uid://ds6fedeids3yj" path="res://assets/pawn_s.png" id="1_4nvc4"]
+[ext_resource type="Script" path="res://scripts/Pawn.cs" id="1_y5yg8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4bm3n"]
+size = Vector2(100, 100)
+
+[node name="Pawn" type="RigidBody2D"]
+script = ExtResource("1_y5yg8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_4bm3n")
+
+[node name="PawnS" type="Sprite2D" parent="CollisionShape2D"]
+texture = ExtResource("1_4nvc4")
