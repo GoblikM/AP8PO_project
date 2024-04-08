@@ -7,6 +7,7 @@
 size = Vector2(100, 100)
 
 [node name="Pawn" type="RigidBody2D"]
+lock_rotation = true
 script = ExtResource("1_y5yg8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

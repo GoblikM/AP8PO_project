@@ -16,13 +16,17 @@ public partial class StartGame : Node2D
 	[Export]
 	PackedScene[] Pieces {get; set;}
 	[Export]
-	Vector2[] Positions {get; set;}
+	Vector2[] StartPositions {get; set;}
 
 
 	private List<Piece> PiecesInstances { get; set; } = new List<Piece>();
 	private int SelectedPieceId { get; set; } = -1;
 	private Vector2 SelectedPiecePosition { get; set; }
 	private Vector2 TempSelectedPiecePosition { get; set; }
+
+	private List<Vector2> Positions { get; set; } = new List<Vector2>();
+	private List<Vector2> TempPositions { get; set; } = new List<Vector2>();
+
 
 	private BoardTileState[,] MapArray = new BoardTileState[Constants.mapWidth, Constants.mapHeight];
 
@@ -38,42 +42,98 @@ public partial class StartGame : Node2D
 
 			pi.SayHello();
 			PiecesInstances.Add(pi);	
-			PiecesInstances[index].Set("position", new Vector2(Positions[index].X * Constants.tileSize + (Constants.tileSize/2), Positions[index].Y * Constants.tileSize + (Constants.tileSize/2)));
+			PiecesInstances[index].Set("position", new Vector2(StartPositions[index].X * Constants.tileSize + (Constants.tileSize/2), StartPositions[index].Y * Constants.tileSize + (Constants.tileSize/2)));
 			AddChild(pi);		
 		}
 
 		AddChild(PossibleMoves);
 	}
 
+	private bool AreItemsEqualAtIndex()
+    {
+        // Pokud mají pole různou délku, nejsou stejné
+        if (Positions.Count != TempPositions.Count)
+            return false;
+
+        // Porovnání položka po položce
+        for (int i = 0; i < Positions.Count; i++)
+        {
+            // Pokud jsou položky na stejných indexech různé, vrátíme false
+            if (Positions[i] != TempPositions[i])
+                return false;
+        }
+
+        // Všechny položky na stejných indexech jsou stejné
+        return true;
+    }
 
 	private bool UpdateMap { get; set; } = true;
+	private int SelectedPieceIdTemp { get; set; } = -1;
 	public override void _Process(double delta)
 	{
 		if (SelectedPieceId < 0){
 			ChoosePieceWithClick();
 			return;
 		}
+		SelectedPieceIdTemp = SelectedPieceId;
 
-		SelectedPiecePosition = PiecesInstances[SelectedPieceId].Position;
+		// CleanVariables();
+		// SetMap();
+		// MapArray = PiecesInstances[SelectedPieceId].GetMoves(GlobalPositionToMapPos(), MapArray);
+		// ChoosePieceWithClick();
+		// ShowPossibleMoves();
+		// MoveWithCorrectClick();
 
-		if (!TempSelectedPiecePosition.IsEqualApprox(SelectedPiecePosition)){
+
+		Positions.Clear();
+		foreach(var piece in PiecesInstances){
+			Positions.Add(piece.GlobalPosition);
+		}
+		
+		if (!AreItemsEqualAtIndex())
+        {
 			UpdateMap = true;
-		} else{
-			if (UpdateMap == true){
+        }
+        else
+        {
+			ChoosePieceWithClick();
+			if (UpdateMap == true || SelectedPieceId != SelectedPieceIdTemp){
 				CleanVariables();
 				SetMap();
 				MapArray = PiecesInstances[SelectedPieceId].GetMoves(GlobalPositionToMapPos(), MapArray);
 
 				UpdateMap = false;
+				ShowPossibleMoves();
 			}
-			ChoosePieceWithClick();
-
-
-			ShowPossibleMoves();
+			
 			MoveWithCorrectClick();
+        }
+		TempPositions.Clear();
+		foreach(var piece in PiecesInstances){
+			TempPositions.Add(piece.GlobalPosition);
 		}
 
-		TempSelectedPiecePosition = SelectedPiecePosition;
+
+		// SelectedPiecePosition = PiecesInstances[SelectedPieceId].Position;
+		// if (!TempSelectedPiecePosition.IsEqualApprox(SelectedPiecePosition)){
+		// 	UpdateMap = true;
+		// 	GD.Print("PADAJI");
+		// } else{
+		// 	GD.Print("STOJI");
+		// 	ChoosePieceWithClick();
+		// 	if (UpdateMap == true){
+		// 		GD.Print("AKTUALIZACE 1");
+		// 		CleanVariables();
+		// 		SetMap();
+		// 		MapArray = PiecesInstances[SelectedPieceId].GetMoves(GlobalPositionToMapPos(), MapArray);
+
+		// 		UpdateMap = false;
+		// 		ShowPossibleMoves();
+		// 	}
+			
+		// 	MoveWithCorrectClick();
+		// }
+		// TempSelectedPiecePosition = SelectedPiecePosition;
 	}
 
 
@@ -147,10 +207,15 @@ public partial class StartGame : Node2D
 		SetMap();
 
 		SelectedPiecePosition = new Vector2(x, y);
+		PiecesInstances[SelectedPieceId].Set("position", new Vector2(SelectedPiecePosition.X * Constants.tileSize + (Constants.tileSize/2), SelectedPiecePosition.Y * Constants.tileSize + (Constants.tileSize/2)));
 		MapArray = PiecesInstances[SelectedPieceId].GetMoves(SelectedPiecePosition, MapArray);
 
-		PiecesInstances[SelectedPieceId].Set("position", new Vector2(SelectedPiecePosition.X * Constants.tileSize + (Constants.tileSize/2), SelectedPiecePosition.Y * Constants.tileSize + (Constants.tileSize/2)));
-		PiecesInstances[SelectedPieceId].MoveAndCollide(new Vector2(0, 1));
+		// PiecesInstances[SelectedPieceId].MoveAndCollide(new Vector2(0, 1));
+
+		foreach(var piece in PiecesInstances){
+			piece.MoveAndCollide(new Vector2(0, 1));
+			piece.Rotate(0);
+		}
 	}
 
 	private void CleanVariables(){
@@ -169,8 +234,9 @@ public partial class StartGame : Node2D
 		}
 
 		foreach(var piece in PiecesInstances){
-			int x = (int)Math.Ceiling(piece.Position.X / Constants.tileSize) - 1;
-			int y = (int)Math.Ceiling(piece.Position.Y / Constants.tileSize) - 1;
+			int x = (int)Math.Ceiling(piece.GlobalPosition.X / Constants.tileSize) - 1;
+			int y = (int)Math.Ceiling(piece.GlobalPosition.Y / Constants.tileSize) - 1;
+
 			MapArray[x, y] = BoardTileState.BLOCKED;
 		}
 	}

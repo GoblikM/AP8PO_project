@@ -6,6 +6,7 @@
 size = Vector2(100, 100)
 
 [node name="Queen" type="RigidBody2D"]
+lock_rotation = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_6i8wr")
