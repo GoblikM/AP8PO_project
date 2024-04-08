@@ -18,6 +18,9 @@ public partial class StartGame : Node2D
 	[Export]
 	Vector2[] StartPositions {get; set;}
 
+	[Export]
+	TileMap TileMap { get; set; }
+
 
 	private List<Piece> PiecesInstances { get; set; } = new List<Piece>();
 	private int SelectedPieceId { get; set; } = -1;
@@ -29,6 +32,8 @@ public partial class StartGame : Node2D
 
 
 	private BoardTileState[,] MapArray = new BoardTileState[Constants.mapWidth, Constants.mapHeight];
+	private List<Vector2> BlockTiles = new List<Vector2>();
+	private List<Vector2> OpenTiles = new List<Vector2>();
 
 	private CanvasGroup PossibleMoves = new CanvasGroup();
 	private List<(int, int)> ActualMoves = new List<(int, int)>();
@@ -47,24 +52,32 @@ public partial class StartGame : Node2D
 		}
 
 		AddChild(PossibleMoves);
+
+
+		foreach(var tile in TileMap.GetUsedCells(0)){
+			BlockTiles.Add(new Vector2(tile.X, tile.Y));
+		}
+		foreach(var tile in TileMap.GetUsedCells(1)){
+			OpenTiles.Add(new Vector2(tile.X, tile.Y));
+		}
 	}
 
-	private bool AreItemsEqualAtIndex()
+	private bool ArePiecesMoving()
     {
         // Pokud mají pole různou délku, nejsou stejné
         if (Positions.Count != TempPositions.Count)
-            return false;
+            return true;
 
         // Porovnání položka po položce
         for (int i = 0; i < Positions.Count; i++)
         {
             // Pokud jsou položky na stejných indexech různé, vrátíme false
             if (Positions[i] != TempPositions[i])
-                return false;
+                return true;
         }
 
         // Všechny položky na stejných indexech jsou stejné
-        return true;
+        return false;
     }
 
 	private bool UpdateMap { get; set; } = true;
@@ -90,7 +103,7 @@ public partial class StartGame : Node2D
 			Positions.Add(piece.GlobalPosition);
 		}
 		
-		if (!AreItemsEqualAtIndex())
+		if (ArePiecesMoving())
         {
 			UpdateMap = true;
         }
@@ -229,7 +242,11 @@ public partial class StartGame : Node2D
 	private void SetMap(){
 		for (int x = 0; x < MapArray.GetLength(0); x++){
 			for (int y = 0; y < MapArray.GetLength(1); y++){
-				MapArray[x, y] = BoardTileState.OPEN;
+				if (BlockTiles.Any(it => it.IsEqualApprox(new Vector2(x, y)))){
+					MapArray[x, y] = BoardTileState.BLOCKED;
+				} else{
+					MapArray[x, y] = BoardTileState.OPEN;
+				}
 			}
 		}
 
