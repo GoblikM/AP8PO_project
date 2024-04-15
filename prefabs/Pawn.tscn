@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/Pawn.cs" id="1_y5yg8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4bm3n"]
-size = Vector2(100, 100)
+size = Vector2(55, 98)
 
 [node name="Pawn" type="RigidBody2D"]
 lock_rotation = true

@@ -7,6 +7,7 @@ using System.Linq;
 public enum BoardTileState{
 	BLOCKED,
 	OPEN,
+	OPEN_TO_JUMP,
 	PIECE_MOVEMENT
 }
 
@@ -14,9 +15,9 @@ public enum BoardTileState{
 public partial class StartGame : Node2D
 {
 	[Export]
-	PackedScene[] Pieces {get; set;}
+	PackedScene[] Pieces {get; set; }
 	[Export]
-	Vector2[] StartPositions {get; set;}
+	Vector2[] StartPositions {get; set; }
 
 	[Export]
 	TileMap TileMap { get; set; }
@@ -34,6 +35,7 @@ public partial class StartGame : Node2D
 	private BoardTileState[,] MapArray = new BoardTileState[Constants.mapWidth, Constants.mapHeight];
 	private List<Vector2> BlockTiles = new List<Vector2>();
 	private List<Vector2> OpenTiles = new List<Vector2>();
+	Vector2 FinishPointTile {get; set; }
 
 	private CanvasGroup PossibleMoves = new CanvasGroup();
 	private List<(int, int)> ActualMoves = new List<(int, int)>();
@@ -57,26 +59,23 @@ public partial class StartGame : Node2D
 		foreach(var tile in TileMap.GetUsedCells(0)){
 			BlockTiles.Add(new Vector2(tile.X, tile.Y));
 		}
-		foreach(var tile in TileMap.GetUsedCells(1)){
-			OpenTiles.Add(new Vector2(tile.X, tile.Y));
-		}
+		// foreach(var tile in TileMap.GetUsedCells(1)){
+		// 	OpenTiles.Add(new Vector2(tile.X, tile.Y));
+		// }
+		FinishPointTile = TileMap.GetUsedCells(2)[0];
 	}
 
 	private bool ArePiecesMoving()
     {
-        // Pokud mají pole různou délku, nejsou stejné
         if (Positions.Count != TempPositions.Count)
             return true;
 
-        // Porovnání položka po položce
         for (int i = 0; i < Positions.Count; i++)
         {
-            // Pokud jsou položky na stejných indexech různé, vrátíme false
             if (Positions[i] != TempPositions[i])
                 return true;
         }
 
-        // Všechny položky na stejných indexech jsou stejné
         return false;
     }
 
@@ -89,14 +88,6 @@ public partial class StartGame : Node2D
 			return;
 		}
 		SelectedPieceIdTemp = SelectedPieceId;
-
-		// CleanVariables();
-		// SetMap();
-		// MapArray = PiecesInstances[SelectedPieceId].GetMoves(GlobalPositionToMapPos(), MapArray);
-		// ChoosePieceWithClick();
-		// ShowPossibleMoves();
-		// MoveWithCorrectClick();
-
 
 		Positions.Clear();
 		foreach(var piece in PiecesInstances){
@@ -113,40 +104,23 @@ public partial class StartGame : Node2D
 			if (UpdateMap == true || SelectedPieceId != SelectedPieceIdTemp){
 				CleanVariables();
 				SetMap();
-				MapArray = PiecesInstances[SelectedPieceId].GetMoves(GlobalPositionToMapPos(), MapArray);
+				MapArray = PiecesInstances[SelectedPieceId].GetMoves(GetSelectedPiecePosition(), MapArray);
 
 				UpdateMap = false;
 				ShowPossibleMoves();
 			}
 			
 			MoveWithCorrectClick();
+			
+			if (GetSelectedPiecePosition().IsEqualApprox(FinishPointTile)){
+				GD.Print("KONEC");
+			}
         }
+		
 		TempPositions.Clear();
 		foreach(var piece in PiecesInstances){
 			TempPositions.Add(piece.GlobalPosition);
 		}
-
-
-		// SelectedPiecePosition = PiecesInstances[SelectedPieceId].Position;
-		// if (!TempSelectedPiecePosition.IsEqualApprox(SelectedPiecePosition)){
-		// 	UpdateMap = true;
-		// 	GD.Print("PADAJI");
-		// } else{
-		// 	GD.Print("STOJI");
-		// 	ChoosePieceWithClick();
-		// 	if (UpdateMap == true){
-		// 		GD.Print("AKTUALIZACE 1");
-		// 		CleanVariables();
-		// 		SetMap();
-		// 		MapArray = PiecesInstances[SelectedPieceId].GetMoves(GlobalPositionToMapPos(), MapArray);
-
-		// 		UpdateMap = false;
-		// 		ShowPossibleMoves();
-		// 	}
-			
-		// 	MoveWithCorrectClick();
-		// }
-		// TempSelectedPiecePosition = SelectedPiecePosition;
 	}
 
 
@@ -172,7 +146,7 @@ public partial class StartGame : Node2D
 	}
 
 
-	private Vector2 GlobalPositionToMapPos(){
+	private Vector2 GetSelectedPiecePosition(){
 		int x = (int)Math.Ceiling(PiecesInstances[SelectedPieceId].GlobalPosition.X / Constants.tileSize) - 1;
 		int y = (int)Math.Ceiling(PiecesInstances[SelectedPieceId].GlobalPosition.Y / Constants.tileSize) - 1;
 		
@@ -223,8 +197,6 @@ public partial class StartGame : Node2D
 		PiecesInstances[SelectedPieceId].Set("position", new Vector2(SelectedPiecePosition.X * Constants.tileSize + (Constants.tileSize/2), SelectedPiecePosition.Y * Constants.tileSize + (Constants.tileSize/2)));
 		MapArray = PiecesInstances[SelectedPieceId].GetMoves(SelectedPiecePosition, MapArray);
 
-		// PiecesInstances[SelectedPieceId].MoveAndCollide(new Vector2(0, 1));
-
 		foreach(var piece in PiecesInstances){
 			piece.MoveAndCollide(new Vector2(0, 1));
 			piece.Rotate(0);
@@ -244,7 +216,10 @@ public partial class StartGame : Node2D
 			for (int y = 0; y < MapArray.GetLength(1); y++){
 				if (BlockTiles.Any(it => it.IsEqualApprox(new Vector2(x, y)))){
 					MapArray[x, y] = BoardTileState.BLOCKED;
-				} else{
+				} else if (OpenTiles.Any(it => it.IsEqualApprox(new Vector2(x, y)))){
+					MapArray[x, y] = BoardTileState.OPEN_TO_JUMP;
+				}
+				else{
 					MapArray[x, y] = BoardTileState.OPEN;
 				}
 			}

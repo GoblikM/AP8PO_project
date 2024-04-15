@@ -1,12 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://ce8c7vpuakoww"]
+[gd_scene load_steps=4 format=3 uid="uid://ce8c7vpuakoww"]
 
 [ext_resource type="Texture2D" uid="uid://cbw2ymo7s248t" path="res://assets/queen_s.png" id="1_07c4o"]
+[ext_resource type="Script" path="res://scripts/Queen.cs" id="1_afjih"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6i8wr"]
-size = Vector2(100, 100)
+size = Vector2(50, 98)
 
 [node name="Queen" type="RigidBody2D"]
 lock_rotation = true
+script = ExtResource("1_afjih")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_6i8wr")

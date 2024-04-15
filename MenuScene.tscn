@@ -1,0 +1,62 @@
+[gd_scene load_steps=4 format=3 uid="uid://bk08woxpyyun"]
+
+[ext_resource type="Texture2D" uid="uid://docl4qqlcs0k5" path="res://assets/Designer(1).jpeg" id="1_rnlih"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_kexm0"]
+font_size = 150
+font_color = Color(0, 0, 0, 1)
+outline_size = 5
+shadow_size = 5
+shadow_color = Color(1, 1, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_njfuh"]
+font_size = 35
+
+[node name="MenuScene" type="CanvasLayer"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_rnlih")
+
+[node name="Label2" type="Label" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Šachy, ale jinak!"
+label_settings = SubResource("LabelSettings_kexm0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 40.0
+grow_vertical = 0
+text = "Vytvořeno:
+Jiří Daberger
+Martin Goldbach"
+label_settings = SubResource("LabelSettings_njfuh")
+
+[node name="Button" type="Button" parent="."]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 550.0
+offset_top = 146.0
+offset_right = -550.0
+offset_bottom = 246.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 60
+text = "Výběr levelu"

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cmt2h2ola6wqt" path="res://assets/rook_s.png" id="1_g0cn1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p1xkf"]
-size = Vector2(100, 100)
+size = Vector2(60, 98)
 
 [node name="Rook" type="RigidBody2D"]
 lock_rotation = true
