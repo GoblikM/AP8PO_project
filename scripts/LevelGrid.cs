@@ -9,7 +9,7 @@ public partial class LevelGrid : GridContainer
 		foreach(Node n in GetChildren()){
 			LevelBox script = n as LevelBox;
 			script.SetLevel(i);
-			script.SetIsLocked(false);
+			script.SetIsLocked(true);
 
 			i++;
 		}

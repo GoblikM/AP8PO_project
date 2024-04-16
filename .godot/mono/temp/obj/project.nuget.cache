@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "KcsvnzL5GSseViWEnvon8KnXxn02SCgZMEm5ZxGh3pa3E5xF+Yx4PBp7EMt+oSU+74h5QMvUTKFgM6Gad+uH5Q==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\goldb\\AP8PO_project\\AP8PO_game.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\goldb\\.nuget\\packages\\godot.sourcegenerators\\4.2.1\\godot.sourcegenerators.4.2.1.nupkg.sha512",
+    "C:\\Users\\goldb\\.nuget\\packages\\godotsharp\\4.2.1\\godotsharp.4.2.1.nupkg.sha512",
+    "C:\\Users\\goldb\\.nuget\\packages\\godotsharpeditor\\4.2.1\\godotsharpeditor.4.2.1.nupkg.sha512"
+  ],
+  "logs": []
+}

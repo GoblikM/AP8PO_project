@@ -66,18 +66,18 @@ public partial class StartGame : Node2D
 	}
 
 	private bool ArePiecesMoving()
-    {
-        if (Positions.Count != TempPositions.Count)
-            return true;
+	{
+		if (Positions.Count != TempPositions.Count)
+			return true;
 
-        for (int i = 0; i < Positions.Count; i++)
-        {
-            if (Positions[i] != TempPositions[i])
-                return true;
-        }
+		for (int i = 0; i < Positions.Count; i++)
+		{
+			if (Positions[i] != TempPositions[i])
+				return true;
+		}
 
-        return false;
-    }
+		return false;
+	}
 
 	private bool UpdateMap { get; set; } = true;
 	private int SelectedPieceIdTemp { get; set; } = -1;
@@ -95,11 +95,11 @@ public partial class StartGame : Node2D
 		}
 		
 		if (ArePiecesMoving())
-        {
+		{
 			UpdateMap = true;
-        }
-        else
-        {
+		}
+		else
+		{
 			ChoosePieceWithClick();
 			if (UpdateMap == true || SelectedPieceId != SelectedPieceIdTemp){
 				CleanVariables();
@@ -115,7 +115,7 @@ public partial class StartGame : Node2D
 			if (GetSelectedPiecePosition().IsEqualApprox(FinishPointTile)){
 				GD.Print("KONEC");
 			}
-        }
+		}
 		
 		TempPositions.Clear();
 		foreach(var piece in PiecesInstances){

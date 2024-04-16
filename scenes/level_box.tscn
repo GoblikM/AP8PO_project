@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://c6oou3ftw24s"]
+[gd_scene load_steps=8 format=3 uid="uid://c6oou3ftw24s"]
 
 [ext_resource type="Script" path="res://scripts/LevelBox.cs" id="1_4q8xl"]
 [ext_resource type="FontFile" uid="uid://cwgdhmo3tbmnj" path="res://scenes/Rubik-Bold.ttf" id="2_lnepu"]
-[ext_resource type="Texture2D" uid="uid://dhhoiqaxjifbf" path="res://assets/lockIcon.png" id="3_wchhi"]
+[ext_resource type="Shader" path="res://assets/2d_outline.gdshader" id="3_byc0f"]
+[ext_resource type="Texture2D" uid="uid://b4bslhg1nrqnv" path="res://assets/lockIcon.png" id="3_wchhi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tewb2"]
 bg_color = Color(0.682353, 0.878431, 0.85098, 1)
@@ -18,6 +19,13 @@ font_size = 64
 font_color = Color(0.933333, 0.513726, 0.0666667, 1)
 outline_size = 16
 outline_color = Color(0.341176, 0.427451, 0.513726, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0rbkd"]
+shader = ExtResource("3_byc0f")
+shader_parameter/enable = true
+shader_parameter/line_color = Color(0.341176, 0.427451, 0.513726, 1)
+shader_parameter/fill_color = Color(0.933333, 0.513726, 0.0666667, 1)
+shader_parameter/line_thickness = 15.0
 
 [node name="LevelBox" type="PanelContainer"]
 custom_minimum_size = Vector2(200, 200)
@@ -40,8 +48,9 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
-modulate = Color(0.933333, 0.513726, 0.0666667, 1)
+[node name="Lock" type="TextureRect" parent="MarginContainer"]
+material = SubResource("ShaderMaterial_0rbkd")
 layout_mode = 2
 texture = ExtResource("3_wchhi")
-expand_mode = 2
+expand_mode = 1
+stretch_mode = 4
