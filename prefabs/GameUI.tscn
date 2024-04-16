@@ -1,6 +1,9 @@
-[gd_scene format=3 uid="uid://dm2p25xlatw8j"]
+[gd_scene load_steps=2 format=3 uid="uid://dm2p25xlatw8j"]
 
-[node name="GameUi" type="CanvasLayer"]
+[ext_resource type="Script" path="res://scripts/ChangeScene.cs" id="1_xye5e"]
+
+[node name="GameUi" type="Node"]
+script = ExtResource("1_xye5e")
 
 [node name="Panel" type="Panel" parent="."]
 modulate = Color(0.0588235, 1, 1, 1)
@@ -33,3 +36,6 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 text = "RESET"
+
+[connection signal="pressed" from="Panel/HSplitContainer/Button" to="." method="goToMenu"]
+[connection signal="pressed" from="Panel/HSplitContainer/Button2" to="." method="ResetGameScene"]

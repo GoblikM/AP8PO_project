@@ -1,0 +1,93 @@
+[gd_scene load_steps=3 format=3 uid="uid://eyd7iwwjmga"]
+
+[ext_resource type="PackedScene" uid="uid://c6oou3ftw24s" path="res://scenes/level_box.tscn" id="1_4o7v8"]
+[ext_resource type="Script" path="res://scripts/LevelGrid.cs" id="1_yt5fq"]
+
+[node name="LevelGrid" type="GridContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -625.0
+offset_top = -310.0
+offset_right = 625.0
+offset_bottom = 310.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 6
+script = ExtResource("1_yt5fq")
+
+[node name="LevelBox" parent="." instance=ExtResource("1_4o7v8")]
+layout_mode = 2
+
+[node name="LevelBox2" parent="." instance=ExtResource("1_4o7v8")]
+layout_mode = 2
+
+[node name="LevelBox3" parent="." instance=ExtResource("1_4o7v8")]
+layout_mode = 2
+
+[node name="LevelBox4" parent="." instance=ExtResource("1_4o7v8")]
+layout_mode = 2
+
+[node name="LevelBox5" parent="." instance=ExtResource("1_4o7v8")]
+layout_mode = 2
+
+[node name="LevelBox6" parent="." instance=ExtResource("1_4o7v8")]
+layout_mode = 2
+
+[node name="LevelBox7" parent="." instance=ExtResource("1_4o7v8")]
+layout_mode = 2
+
+[node name="LevelBox8" parent="." instance=ExtResource("1_4o7v8")]
+layout_mode = 2
+
+[node name="LevelBox9" parent="." instance=ExtResource("1_4o7v8")]
+layout_mode = 2
+
+[node name="LevelBox10" parent="." instance=ExtResource("1_4o7v8")]
+layout_mode = 2
+
+[node name="LevelBox11" parent="." instance=ExtResource("1_4o7v8")]
+layout_mode = 2
+
+[node name="LevelBox12" parent="." instance=ExtResource("1_4o7v8")]
+layout_mode = 2
+
+[node name="LevelBox13" parent="." instance=ExtResource("1_4o7v8")]
+layout_mode = 2
+
+[node name="LevelBox14" parent="." instance=ExtResource("1_4o7v8")]
+layout_mode = 2
+
+[node name="LevelBox15" parent="." instance=ExtResource("1_4o7v8")]
+layout_mode = 2
+
+[node name="LevelBox16" parent="." instance=ExtResource("1_4o7v8")]
+layout_mode = 2
+
+[node name="LevelBox17" parent="." instance=ExtResource("1_4o7v8")]
+layout_mode = 2
+
+[node name="LevelBox18" parent="." instance=ExtResource("1_4o7v8")]
+layout_mode = 2
+
+[node name="LevelBox19" parent="." instance=ExtResource("1_4o7v8")]
+layout_mode = 2
+
+[node name="LevelBox20" parent="." instance=ExtResource("1_4o7v8")]
+layout_mode = 2
+
+[node name="LevelBox21" parent="." instance=ExtResource("1_4o7v8")]
+layout_mode = 2
+
+[node name="LevelBox22" parent="." instance=ExtResource("1_4o7v8")]
+layout_mode = 2
+
+[node name="LevelBox23" parent="." instance=ExtResource("1_4o7v8")]
+layout_mode = 2
+
+[node name="LevelBox24" parent="." instance=ExtResource("1_4o7v8")]
+layout_mode = 2

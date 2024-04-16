@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="AP8PO_game"
-run/main_scene="res://game.tscn"
+run/main_scene="res://scenes/MenuScene.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 

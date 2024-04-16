@@ -1,14 +1,1 @@
-Button
-MarginContainer
-Label
-VBoxContainer
 TextureRect
-GridContainer
-AnimationPlayer
-RichTextLabel
-HSplitContainer
-Panel
-CanvasLayer
-TileMap
-CollisionShape2D
-StaticBody2D
