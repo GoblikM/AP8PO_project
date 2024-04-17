@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\goldb\\AP8PO_project\\AP8PO_game.csproj": {}
+    "D:\\zaloha\\UTB-ing\\AP8PO\\projekt\\AP8PO_game.csproj": {}
   },
   "projects": {
-    "C:\\Users\\goldb\\AP8PO_project\\AP8PO_game.csproj": {
+    "D:\\zaloha\\UTB-ing\\AP8PO\\projekt\\AP8PO_game.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\goldb\\AP8PO_project\\AP8PO_game.csproj",
+        "projectUniqueName": "D:\\zaloha\\UTB-ing\\AP8PO\\projekt\\AP8PO_game.csproj",
         "projectName": "AP8PO_game",
-        "projectPath": "C:\\Users\\goldb\\AP8PO_project\\AP8PO_game.csproj",
-        "packagesPath": "C:\\Users\\goldb\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\goldb\\AP8PO_project\\.godot\\mono\\temp\\obj\\",
+        "projectPath": "D:\\zaloha\\UTB-ing\\AP8PO\\projekt\\AP8PO_game.csproj",
+        "packagesPath": "C:\\Users\\jirka\\.nuget\\packages\\",
+        "outputPath": "D:\\zaloha\\UTB-ing\\AP8PO\\projekt\\.godot\\mono\\temp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\goldb\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\jirka\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -69,12 +69,26 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[6.0.28, 6.0.28]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[6.0.28, 6.0.28]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[6.0.28, 6.0.28]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }

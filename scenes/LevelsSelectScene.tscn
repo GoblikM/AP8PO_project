@@ -1,11 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://cw5pe3hjbduyj"]
+[gd_scene load_steps=7 format=3 uid="uid://cw5pe3hjbduyj"]
 
-[ext_resource type="Texture2D" uid="uid://docl4qqlcs0k5" path="res://assets/Designer(1).jpeg" id="1_20sou"]
+[ext_resource type="Texture2D" uid="uid://docl4qqlcs0k5" path="res://assets/Designer.jpeg" id="1_20sou"]
 [ext_resource type="Script" path="res://scripts/ChangeScene.cs" id="1_og86x"]
+[ext_resource type="FontFile" uid="uid://cwgdhmo3tbmnj" path="res://Font/Rubik-Bold.ttf" id="3_g4mnx"]
 [ext_resource type="PackedScene" uid="uid://eyd7iwwjmga" path="res://scenes/level_grid.tscn" id="3_i2qyf"]
+[ext_resource type="Texture2D" uid="uid://gkn2xch7gmwf" path="res://assets/buttons/btnClose.png" id="5_ec158"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_cj8nr"]
-font_size = 180
+font = ExtResource("3_g4mnx")
+font_size = 150
 
 [node name="LevelsSelectScene" type="Node"]
 script = ExtResource("1_og86x")
@@ -33,6 +36,29 @@ label_settings = SubResource("LabelSettings_cj8nr")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="LevelGrid" parent="VBoxContainer" instance=ExtResource("3_i2qyf")]
+[node name="LevelContainer" type="BoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LevelGrid" parent="VBoxContainer/LevelContainer" instance=ExtResource("3_i2qyf")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/PanelContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+
+[node name="btnBack" type="Button" parent="VBoxContainer/PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_vertical = 4
+icon = ExtResource("5_ec158")
+flat = true
+expand_icon = true
+
+[connection signal="pressed" from="VBoxContainer/PanelContainer/HBoxContainer/btnBack" to="." method="ToMainMenu"]

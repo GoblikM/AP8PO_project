@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dabasjpptm7f7"]
 
-[ext_resource type="Texture2D" uid="uid://ds6fedeids3yj" path="res://assets/pawn_s.png" id="1_4nvc4"]
+[ext_resource type="Texture2D" uid="uid://cdhepmc157ucc" path="res://assets/pieces/pawn_s.png" id="1_4nvc4"]
 [ext_resource type="Script" path="res://scripts/Pawn.cs" id="1_y5yg8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4bm3n"]

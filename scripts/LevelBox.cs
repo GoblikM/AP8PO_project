@@ -20,7 +20,12 @@ public partial class LevelBox : PanelContainer
 	public void SetIsLocked(bool isLocked){
 		IsLocked = isLocked;
 	
-		var locek = (MarginContainer)GetChild(1);
+		var locek = (MarginContainer)GetChild(2);
 		locek.Visible = IsLocked;
+	}
+
+
+	private void StartGame(){
+		GetTree().ChangeSceneToFile("res://scenes/levels/level"+LevelNumber+".tscn");
 	}
 }

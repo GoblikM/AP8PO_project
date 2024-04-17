@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dpjr8xvkuwcjk"]
 
-[ext_resource type="Texture2D" uid="uid://dvy58muqj1hrv" path="res://assets/king_s.png" id="1_c836c"]
 [ext_resource type="Script" path="res://scripts/King.cs" id="1_gg37a"]
+[ext_resource type="Texture2D" uid="uid://x8mjqpj72ufw" path="res://assets/pieces/king_s.png" id="2_dlvjx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aklhf"]
 size = Vector2(50, 98)
@@ -14,4 +14,4 @@ script = ExtResource("1_gg37a")
 shape = SubResource("RectangleShape2D_aklhf")
 
 [node name="KingS" type="Sprite2D" parent="CollisionShape2D"]
-texture = ExtResource("1_c836c")
+texture = ExtResource("2_dlvjx")

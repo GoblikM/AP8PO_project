@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bgr5klqhp6rcl"]
 
 [ext_resource type="Script" path="res://scripts/Knight.cs" id="1_svldn"]
-[ext_resource type="Texture2D" uid="uid://col4j6awilefu" path="res://assets/knight_s.png" id="1_v2swq"]
+[ext_resource type="Texture2D" uid="uid://dapwcy4dm1oer" path="res://assets/pieces/knight_s.png" id="2_l0ax1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7pio0"]
 size = Vector2(70, 98)
@@ -14,4 +14,4 @@ script = ExtResource("1_svldn")
 shape = SubResource("RectangleShape2D_7pio0")
 
 [node name="KnightS" type="Sprite2D" parent="CollisionShape2D"]
-texture = ExtResource("1_v2swq")
+texture = ExtResource("2_l0ax1")

@@ -1,12 +1,7 @@
-[gd_scene load_steps=50 format=3 uid="uid://bd0c8qf2k8005"]
+[gd_scene load_steps=45 format=3 uid="uid://bd0c8qf2k8005"]
 
 [ext_resource type="Script" path="res://scripts/StartGame.cs" id="1_07v1b"]
-[ext_resource type="PackedScene" uid="uid://q8831qeehbrd" path="res://prefabs/Rook.tscn" id="2_o1jxu"]
-[ext_resource type="PackedScene" uid="uid://dabasjpptm7f7" path="res://prefabs/Pawn.tscn" id="3_hfklq"]
 [ext_resource type="PackedScene" uid="uid://dpjr8xvkuwcjk" path="res://prefabs/King.tscn" id="4_5cli7"]
-[ext_resource type="PackedScene" uid="uid://ce8c7vpuakoww" path="res://prefabs/Queen.tscn" id="5_5puod"]
-[ext_resource type="PackedScene" uid="uid://d5xs57e28chr" path="res://prefabs/Bishop.tscn" id="6_ar8yu"]
-[ext_resource type="PackedScene" uid="uid://bgr5klqhp6rcl" path="res://prefabs/Knight.tscn" id="7_44mj2"]
 [ext_resource type="Script" path="res://scripts/GenerateBackgroud.cs" id="8_fsus0"]
 [ext_resource type="Texture2D" uid="uid://b2vsensfhig35" path="res://Tiles/1.png" id="9_62n7k"]
 [ext_resource type="Texture2D" uid="uid://cyrei7t02luy0" path="res://Tiles/2.png" id="10_7ki3y"]
@@ -209,8 +204,8 @@ sources/20 = SubResource("TileSetAtlasSource_ta1om")
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("TileMap")]
 script = ExtResource("1_07v1b")
-Pieces = Array[PackedScene]([ExtResource("2_o1jxu"), ExtResource("3_hfklq"), ExtResource("4_5cli7"), ExtResource("2_o1jxu"), ExtResource("5_5puod"), ExtResource("6_ar8yu"), ExtResource("7_44mj2")])
-StartPositions = PackedVector2Array(0, 0, 8, 8, 3, 9, 10, 8, 2, 9, 0, 9, 5, 2)
+Pieces = Array[PackedScene]([ExtResource("4_5cli7")])
+StartPositions = PackedVector2Array(0, 5)
 TileMap = NodePath("TileMap")
 
 [node name="Backgroud" type="CanvasGroup" parent="."]
