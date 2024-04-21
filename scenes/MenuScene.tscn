@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bk08woxpyyun"]
+[gd_scene load_steps=8 format=3 uid="uid://bk08woxpyyun"]
 
 [ext_resource type="Script" path="res://scripts/ChangeScene.cs" id="1_5ii8m"]
 [ext_resource type="Texture2D" uid="uid://docl4qqlcs0k5" path="res://assets/Designer.jpeg" id="2_cb31x"]
 [ext_resource type="FontFile" uid="uid://cwgdhmo3tbmnj" path="res://Font/Rubik-Bold.ttf" id="3_vad0d"]
 [ext_resource type="FontFile" uid="uid://bkfmathnpfx5f" path="res://Font/Righteous-Regular.ttf" id="4_q2mn0"]
+[ext_resource type="PackedScene" uid="uid://bt6jtkfgc5ws6" path="res://prefabs/transition_animation.tscn" id="5_3qdp7"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_kexm0"]
 font = ExtResource("3_vad0d")
@@ -17,13 +18,16 @@ shadow_color = Color(1, 1, 1, 1)
 font = ExtResource("4_q2mn0")
 font_size = 35
 
-[node name="MenuScene" type="Node"]
+[node name="MenuScene" type="Node" node_paths=PackedStringArray("TransitionAnimation")]
 script = ExtResource("1_5ii8m")
+TransitionAnimation = NodePath("TransitionAnimation")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -12.0
+offset_bottom = 12.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_cb31x")
@@ -43,8 +47,10 @@ vertical_alignment = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -23.0
-offset_right = 40.0
+offset_left = 10.0
+offset_top = -148.0
+offset_right = 338.0
+offset_bottom = -10.0
 grow_vertical = 0
 text = "Vytvořil:
 bc. Jiří Daberger
@@ -68,4 +74,7 @@ theme_override_fonts/font = ExtResource("3_vad0d")
 theme_override_font_sizes/font_size = 60
 text = "Výběr levelu"
 
+[node name="TransitionAnimation" parent="." instance=ExtResource("5_3qdp7")]
+
 [connection signal="pressed" from="Button" to="." method="ToLevelsMenu"]
+[connection signal="animation_finished" from="TransitionAnimation" to="." method="_on_transition_animation_animation_finished"]

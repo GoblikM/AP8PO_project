@@ -7,11 +7,14 @@ public partial class LevelGrid : GridContainer
 	{
 		int i = 1;
 		foreach(Node n in GetChildren()){
-			LevelBox script = n as LevelBox;
-			script.SetLevel(i);
-			script.SetIsLocked(false);
+            if (n is LevelBox script)
+            {
+                script.SetLevel(i);
+                script.SetIsLocked(false);
 
-			i++;
-		}
+                i++;
+            }
+
+        }
 	}
 }

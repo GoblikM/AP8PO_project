@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dapwcy4dm1oer" path="res://assets/pieces/knight_s.png" id="2_l0ax1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7pio0"]
-size = Vector2(70, 98)
+size = Vector2(70, 89.7)
 
 [node name="Knight" type="RigidBody2D"]
 lock_rotation = true

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://es601o2g55lt" path="res://assets/pieces/bishop_s.png" id="1_kqc04"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y1hou"]
-size = Vector2(50, 98)
+size = Vector2(50, 89.7)
 
 [node name="Bishop" type="RigidBody2D"]
 lock_rotation = true

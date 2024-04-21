@@ -1,0 +1,100 @@
+[gd_scene load_steps=11 format=3 uid="uid://dm2p25xlatw8j"]
+
+[ext_resource type="Script" path="res://scripts/GameUI.cs" id="1_lwyt7"]
+[ext_resource type="Texture2D" uid="uid://bolkpo34kwgkr" path="res://assets/buttons/btnMenu.png" id="2_688t1"]
+[ext_resource type="Texture2D" uid="uid://c25jc4qm64ybp" path="res://assets/buttons/btnRestart.png" id="2_dre1m"]
+[ext_resource type="PackedScene" uid="uid://bt6jtkfgc5ws6" path="res://prefabs/transition_animation.tscn" id="4_f1ukc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3vgho"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fgxxw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eecet"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3gqkp"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ug0ap"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ptkik"]
+
+[node name="GameUi" type="Node" node_paths=PackedStringArray("LabelTime", "LabelLevel", "TransitionAnimation")]
+script = ExtResource("1_lwyt7")
+LabelTime = NodePath("Panel/ButtonsPanel/Labels/LabelTime")
+LabelLevel = NodePath("Panel/ButtonsPanel/Labels/LabelLevel")
+TransitionAnimation = NodePath("TransitionAnimation")
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(0, 100)
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="ButtonsPanel" type="HBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -100.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Button" type="Button" parent="Panel/ButtonsPanel"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+theme_override_styles/hover = SubResource("StyleBoxEmpty_3vgho")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_fgxxw")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_eecet")
+icon = ExtResource("2_688t1")
+flat = true
+expand_icon = true
+
+[node name="Labels" type="VBoxContainer" parent="Panel/ButtonsPanel"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 0
+
+[node name="LabelLevel" type="Label" parent="Panel/ButtonsPanel/Labels"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Aktuální level: 1"
+
+[node name="LabelTime" type="Label" parent="Panel/ButtonsPanel/Labels"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Čas hry: 00:00:00"
+
+[node name="Button2" type="Button" parent="Panel/ButtonsPanel"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 4
+theme_override_styles/hover = SubResource("StyleBoxEmpty_3gqkp")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ug0ap")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ptkik")
+icon = ExtResource("2_dre1m")
+flat = true
+expand_icon = true
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="TransitionAnimation" parent="." instance=ExtResource("4_f1ukc")]
+
+[connection signal="pressed" from="Panel/ButtonsPanel/Button" to="." method="ToLevelsMenu"]
+[connection signal="pressed" from="Panel/ButtonsPanel/Button2" to="." method="ResetGameScene"]
+[connection signal="timeout" from="Timer" to="." method="Timeout"]
+[connection signal="animation_finished" from="TransitionAnimation" to="." method="_on_transition_animation_animation_finished"]

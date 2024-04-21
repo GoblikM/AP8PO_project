@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/Queen.cs" id="1_afjih"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6i8wr"]
-size = Vector2(50, 98)
+size = Vector2(50, 89.7)
 
 [node name="Queen" type="RigidBody2D"]
 lock_rotation = true

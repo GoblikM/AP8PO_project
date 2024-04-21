@@ -12,7 +12,7 @@ public enum BoardTileState{
 }
 
 
-public partial class StartGame : Node2D
+public partial class GameLevel : Node2D
 {
 	[Export]
 	PackedScene[] Pieces {get; set; }

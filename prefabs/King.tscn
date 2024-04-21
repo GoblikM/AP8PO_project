@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://x8mjqpj72ufw" path="res://assets/pieces/king_s.png" id="2_dlvjx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aklhf"]
-size = Vector2(50, 98)
+size = Vector2(50, 89.7)
 
 [node name="King" type="RigidBody2D"]
 lock_rotation = true
