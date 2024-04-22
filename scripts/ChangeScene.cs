@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.IO;
 
 public partial class ChangeScene : Node
 {
@@ -11,12 +12,11 @@ public partial class ChangeScene : Node
 
 
 	public override void _Ready(){
-		GD.Print("LALALLA");
 		TransitionAnimation.Play("fade_in");
 	}
 
 
-	private void ToLevelsMenu(){
+	public void ToLevelsMenu(){
 		TransitionAnimation.Play("fade_out");
 		To = "res://scenes/LevelsSelectScene.tscn";
 	}
@@ -27,14 +27,16 @@ public partial class ChangeScene : Node
 	}
 
 
-	private void ResetGameScene(){
+	public void ResetGameScene(){
 		TransitionAnimation.Play("fade_out");
 		To = GetTree().CurrentScene.SceneFilePath;
 	}
 
 	public void ToGameLevel(String sceneName){
-		TransitionAnimation.Play("fade_out");
-		To = sceneName;
+		if (ResourceLoader.Exists(sceneName)){
+			TransitionAnimation.Play("fade_out");
+			To = sceneName;
+		}
 	}
 
 

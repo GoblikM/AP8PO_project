@@ -7,6 +7,12 @@ public abstract partial class Piece : RigidBody2D
 
     public abstract void SayHello();
 
+	[Export]
+	AnimationPlayer Animation { get; set; }
+	public void Animate(){
+		Animation.Play("piece_selected");
+	}
+
 
     protected static BoardTileState[,] MovementAxisX(Vector2 actualPos, BoardTileState[,] mapArray){
         int[] directionsX = { -1, 1 };

@@ -168,9 +168,10 @@ public partial class GameLevel : Node2D
 					return new Vector2(it_x, it_y) == new Vector2(x, y);
 				});
 
-			if (index != null)
+			if (index != null && index.Index != SelectedPieceId)
 			{
 				SelectedPieceId = index.Index;
+				PiecesInstances[SelectedPieceId].Animate();
 			}
 			
 		}

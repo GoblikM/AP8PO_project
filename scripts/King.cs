@@ -28,4 +28,6 @@ public partial class King : Piece
     {
         GD.Print("Hello from KING");
     }
+
+    
 }

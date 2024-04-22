@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://d5xs57e28chr"]
+[gd_scene load_steps=6 format=3 uid="uid://d5xs57e28chr"]
 
 [ext_resource type="Script" path="res://scripts/Bishop.cs" id="1_k3xkr"]
 [ext_resource type="Texture2D" uid="uid://es601o2g55lt" path="res://assets/pieces/bishop_s.png" id="1_kqc04"]
@@ -6,12 +6,39 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y1hou"]
 size = Vector2(50, 89.7)
 
-[node name="Bishop" type="RigidBody2D"]
+[sub_resource type="Animation" id="Animation_oey2c"]
+resource_name = "piece_selected"
+length = 0.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D/Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45, 0.6, 0.75),
+"transitions": PackedFloat32Array(2, 2, 2, 2, 2, 2),
+"update": 0,
+"values": [0.0, -0.349066, 0.349066, -0.174533, 0.174533, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qb4af"]
+_data = {
+"piece_selected": SubResource("Animation_oey2c")
+}
+
+[node name="Bishop" type="RigidBody2D" node_paths=PackedStringArray("Animation")]
 lock_rotation = true
 script = ExtResource("1_k3xkr")
+Animation = NodePath("AnimationPlayer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_y1hou")
 
-[node name="BishopS" type="Sprite2D" parent="CollisionShape2D"]
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
 texture = ExtResource("1_kqc04")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qb4af")
+}

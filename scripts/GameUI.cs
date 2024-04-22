@@ -13,8 +13,7 @@ public partial class GameUI : ChangeScene
 
     public override void _Ready()
 	{
-        GD.Print("GAMEUI");
-        base.TransitionAnimation.Play("fade_in");
+        TransitionAnimation.Play("fade_in");
 
         Timer = GetNode<Timer>("Timer");
 		Timer.Start();
@@ -24,7 +23,6 @@ public partial class GameUI : ChangeScene
     }
 
     public void Timeout(){
-        // Time++;
         LabelTime.Text = "Čas hry: " + TimeSpan.FromSeconds(Time++).ToString(@"hh\:mm\:ss");
     }
 }

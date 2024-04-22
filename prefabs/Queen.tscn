@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://ce8c7vpuakoww"]
+[gd_scene load_steps=6 format=3 uid="uid://ce8c7vpuakoww"]
 
 [ext_resource type="Texture2D" uid="uid://c5huu1hyxhim5" path="res://assets/pieces/queen_s.png" id="1_07c4o"]
 [ext_resource type="Script" path="res://scripts/Queen.cs" id="1_afjih"]
@@ -6,12 +6,39 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6i8wr"]
 size = Vector2(50, 89.7)
 
-[node name="Queen" type="RigidBody2D"]
+[sub_resource type="Animation" id="Animation_1xmm2"]
+resource_name = "piece_selected"
+length = 0.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D/Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45, 0.6, 0.75),
+"transitions": PackedFloat32Array(2, 2, 2, 2, 2, 2),
+"update": 0,
+"values": [0.0, -0.349066, 0.349066, -0.174533, 0.174533, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lkyjc"]
+_data = {
+"piece_selected": SubResource("Animation_1xmm2")
+}
+
+[node name="Queen" type="RigidBody2D" node_paths=PackedStringArray("Animation")]
 lock_rotation = true
 script = ExtResource("1_afjih")
+Animation = NodePath("AnimationPlayer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_6i8wr")
 
-[node name="QueenS" type="Sprite2D" parent="CollisionShape2D"]
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
 texture = ExtResource("1_07c4o")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_lkyjc")
+}

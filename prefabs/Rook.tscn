@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://q8831qeehbrd"]
+[gd_scene load_steps=6 format=3 uid="uid://q8831qeehbrd"]
 
 [ext_resource type="Script" path="res://scripts/Rook.cs" id="1_37e4t"]
 [ext_resource type="Texture2D" uid="uid://dksvj4vaftyd5" path="res://assets/pieces/rook_s.png" id="1_g0cn1"]
@@ -6,12 +6,40 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p1xkf"]
 size = Vector2(60, 89.7)
 
-[node name="Rook" type="RigidBody2D"]
+[sub_resource type="Animation" id="Animation_cmbxl"]
+resource_name = "piece_selected"
+length = 0.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45, 0.6, 0.75),
+"transitions": PackedFloat32Array(2, 2, 2, 2, 2, 2),
+"update": 0,
+"values": [0.0, -0.349066, 0.349066, -0.174533, 0.174533, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bw013"]
+_data = {
+"piece_selected": SubResource("Animation_cmbxl")
+}
+
+[node name="Rook" type="RigidBody2D" node_paths=PackedStringArray("Animation")]
 lock_rotation = true
 script = ExtResource("1_37e4t")
+Animation = NodePath("AnimationPlayer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_p1xkf")
 
-[node name="RookS" type="Sprite2D" parent="CollisionShape2D"]
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
 texture = ExtResource("1_g0cn1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../CollisionShape2D")
+libraries = {
+"": SubResource("AnimationLibrary_bw013")
+}
