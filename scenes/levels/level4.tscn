@@ -1,10 +1,11 @@
-[gd_scene load_steps=54 format=3 uid="uid://dwugkjykq8nkh"]
+[gd_scene load_steps=55 format=3 uid="uid://dwugkjykq8nkh"]
 
 [ext_resource type="Script" path="res://scripts/GameLevel.cs" id="1_18mt4"]
 [ext_resource type="PackedScene" uid="uid://q8831qeehbrd" path="res://prefabs/Rook.tscn" id="2_mcl1n"]
 [ext_resource type="PackedScene" uid="uid://dpjr8xvkuwcjk" path="res://prefabs/King.tscn" id="3_cejxl"]
 [ext_resource type="Script" path="res://scripts/GenerateBackgroud.cs" id="3_osbd5"]
 [ext_resource type="Texture2D" uid="uid://b2vsensfhig35" path="res://Tiles/1.png" id="4_dh6td"]
+[ext_resource type="PackedScene" uid="uid://b1iy0bh0urbk4" path="res://prefabs/FinishPoint.tscn" id="4_n5lcu"]
 [ext_resource type="Texture2D" uid="uid://cyrei7t02luy0" path="res://Tiles/2.png" id="5_oyfe4"]
 [ext_resource type="Texture2D" uid="uid://dljnvps68001i" path="res://Tiles/11.png" id="6_afhqk"]
 [ext_resource type="Texture2D" uid="uid://bxckm0a1qbrwi" path="res://Tiles/12.png" id="7_6af3f"]
@@ -19,7 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://cpu3vc5gs3mfj" path="res://Tiles/3.png" id="16_f40r6"]
 [ext_resource type="Texture2D" uid="uid://cy1pafr8c4ryd" path="res://Tiles/obj_crate003.png" id="17_43nsq"]
 [ext_resource type="Texture2D" uid="uid://b1x1me2t33bvg" path="res://Tiles/obj_crate005.png" id="18_nq5i3"]
-[ext_resource type="Texture2D" uid="uid://b6odyf71hsdd0" path="res://icon.svg" id="19_ib2op"]
+[ext_resource type="Texture2D" uid="uid://bwfqlx5jtgk72" path="res://assets/finish_point.png" id="20_ndxp1"]
 [ext_resource type="Texture2D" uid="uid://exvpk0nm2hah" path="res://Tiles/4.png" id="20_t2yta"]
 [ext_resource type="Texture2D" uid="uid://b3amv8ojvkfm6" path="res://Tiles/5.png" id="21_77pej"]
 [ext_resource type="Texture2D" uid="uid://gfv80lsj10jy" path="res://Tiles/6.png" id="22_r801a"]
@@ -145,9 +146,8 @@ texture_region_size = Vector2i(90, 90)
 0:0/0/physics_layer_0/angular_velocity = 0.0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-45, -45, 45, -45, 45, -45, -45, -45)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b6rda"]
-texture = ExtResource("19_ib2op")
-margins = Vector2i(19, 19)
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d332b"]
+texture = ExtResource("20_ndxp1")
 texture_region_size = Vector2i(90, 90)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -227,13 +227,15 @@ sources/18 = SubResource("TileSetAtlasSource_qlsg4")
 sources/19 = SubResource("TileSetAtlasSource_21347")
 sources/20 = SubResource("TileSetAtlasSource_w6a0r")
 sources/21 = SubResource("TileSetAtlasSource_82drp")
-sources/22 = SubResource("TileSetAtlasSource_b6rda")
+sources/23 = SubResource("TileSetAtlasSource_d332b")
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("TileMap")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("TileMap", "GameUiNode")]
 script = ExtResource("1_18mt4")
 Pieces = Array[PackedScene]([ExtResource("3_cejxl"), ExtResource("2_mcl1n")])
 StartPositions = PackedVector2Array(2, 5, 1, 2)
 TileMap = NodePath("TileMap")
+FinishPoint = ExtResource("4_n5lcu")
+GameUiNode = NodePath("GameUi")
 
 [node name="Backgroud" type="CanvasGroup" parent="."]
 script = ExtResource("3_osbd5")
@@ -252,6 +254,7 @@ layer_0/tile_data = PackedInt32Array(196608, 18, 0, 196609, 18, 0, 196610, 18, 0
 layer_1/name = "Open"
 layer_1/tile_data = PackedInt32Array()
 layer_2/name = "FinishPoint"
-layer_2/tile_data = PackedInt32Array(458760, 22, 0)
+layer_2/modulate = Color(1, 0, 0, 1)
+layer_2/tile_data = PackedInt32Array(458760, 23, 0)
 
 [node name="GameUi" parent="." instance=ExtResource("27_r08rl")]

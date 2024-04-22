@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AP8PO_game")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c734b2f7bfec8230c716d3e8b912533d6e5b3ead")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1313c97ac3adfcb922f93e6fc9c6fcf4ee79224c")]
 [assembly: System.Reflection.AssemblyProductAttribute("AP8PO_game")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AP8PO_game")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

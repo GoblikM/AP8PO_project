@@ -10,8 +10,11 @@ public partial class LevelGrid : GridContainer
             if (n is LevelBox script)
             {
                 script.SetLevel(i);
-                script.SetIsLocked(false);
-
+                if (ResourceLoader.Exists("res://scenes/levels/level"+i+".tscn")){
+                    script.SetIsLocked(false);
+                } else{
+                    script.SetIsLocked(true);
+                }
                 i++;
             }
 

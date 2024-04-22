@@ -32,10 +32,13 @@ public partial class ChangeScene : Node
 		To = GetTree().CurrentScene.SceneFilePath;
 	}
 
-	public void ToGameLevel(String sceneName){
+	public void ToGameLevel(String sceneName, bool fromLevel=false){
 		if (ResourceLoader.Exists(sceneName)){
 			TransitionAnimation.Play("fade_out");
 			To = sceneName;
+		}
+		else if (fromLevel){
+			ToLevelsMenu();
 		}
 	}
 

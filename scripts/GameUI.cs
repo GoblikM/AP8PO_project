@@ -8,6 +8,11 @@ public partial class GameUI : ChangeScene
     [Export]
 	Label LabelLevel { get; set; }
 
+    [Export]
+	Label TitleLevel { get; set; }
+    [Export]
+    AnimationPlayer TitleAnimation { get; set; }
+
     Timer Timer { get; set; }
     int Time { get; set;}
 
@@ -20,6 +25,9 @@ public partial class GameUI : ChangeScene
 
         String levelNumber = GetTree().CurrentScene.SceneFilePath.GetFile().GetBaseName().Replace("level", "");
         LabelLevel.Text = "Aktuální level: " + levelNumber;
+
+        TitleLevel.Text = "LEVEL " + levelNumber;
+        TitleAnimation.Play("title_animation");
     }
 
     public void Timeout(){

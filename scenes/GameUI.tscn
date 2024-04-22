@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://dm2p25xlatw8j"]
+[gd_scene load_steps=14 format=3 uid="uid://dm2p25xlatw8j"]
 
 [ext_resource type="Script" path="res://scripts/GameUI.cs" id="1_lwyt7"]
 [ext_resource type="Texture2D" uid="uid://bolkpo34kwgkr" path="res://assets/buttons/btnMenu.png" id="2_688t1"]
 [ext_resource type="Texture2D" uid="uid://c25jc4qm64ybp" path="res://assets/buttons/btnRestart.png" id="2_dre1m"]
+[ext_resource type="FontFile" uid="uid://cwgdhmo3tbmnj" path="res://Font/Rubik-Bold.ttf" id="2_st073"]
 [ext_resource type="PackedScene" uid="uid://bt6jtkfgc5ws6" path="res://prefabs/transition_animation.tscn" id="4_f1ukc"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3vgho"]
@@ -25,13 +26,68 @@ content_margin_bottom = 10.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ptkik"]
 
-[node name="GameUi" type="Node" node_paths=PackedStringArray("LabelTime", "LabelLevel", "TransitionAnimation")]
+[sub_resource type="Animation" id="Animation_yronn"]
+resource_name = "title_animation"
+length = 1.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel2/Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 1.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rymeo"]
+_data = {
+"title_animation": SubResource("Animation_yronn")
+}
+
+[node name="GameUi" type="Node" node_paths=PackedStringArray("LabelTime", "LabelLevel", "TitleLevel", "TitleAnimation", "TransitionAnimation")]
 script = ExtResource("1_lwyt7")
-LabelTime = NodePath("Panel/ButtonsPanel/Labels/LabelTime")
-LabelLevel = NodePath("Panel/ButtonsPanel/Labels/LabelLevel")
+LabelTime = NodePath("BottomMenu/ButtonsPanel/Labels/LabelTime")
+LabelLevel = NodePath("BottomMenu/ButtonsPanel/Labels/LabelLevel")
+TitleLevel = NodePath("Panel2/Label")
+TitleAnimation = NodePath("TitleAnimation")
 TransitionAnimation = NodePath("TransitionAnimation")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel2" type="Panel" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Panel2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_top = -11.5
+offset_right = 0.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_constants/shadow_offset_y = 10
+theme_override_constants/outline_size = 20
+theme_override_constants/shadow_outline_size = 10
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("2_st073")
+theme_override_font_sizes/font_size = 200
+text = "LEVEL 1"
+
+[node name="BottomMenu" type="Panel" parent="."]
 custom_minimum_size = Vector2(0, 100)
 anchors_preset = 12
 anchor_top = 1.0
@@ -40,7 +96,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="ButtonsPanel" type="HBoxContainer" parent="Panel"]
+[node name="ButtonsPanel" type="HBoxContainer" parent="BottomMenu"]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -50,7 +106,7 @@ offset_top = -100.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="Button" type="Button" parent="Panel/ButtonsPanel"]
+[node name="Button" type="Button" parent="BottomMenu/ButtonsPanel"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 10
@@ -62,23 +118,27 @@ icon = ExtResource("2_688t1")
 flat = true
 expand_icon = true
 
-[node name="Labels" type="VBoxContainer" parent="Panel/ButtonsPanel"]
+[node name="Labels" type="VBoxContainer" parent="BottomMenu/ButtonsPanel"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 0
 
-[node name="LabelLevel" type="Label" parent="Panel/ButtonsPanel/Labels"]
+[node name="LabelLevel" type="Label" parent="BottomMenu/ButtonsPanel/Labels"]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_st073")
+theme_override_font_sizes/font_size = 30
 text = "Aktuální level: 1"
 
-[node name="LabelTime" type="Label" parent="Panel/ButtonsPanel/Labels"]
+[node name="LabelTime" type="Label" parent="BottomMenu/ButtonsPanel/Labels"]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_st073")
+theme_override_font_sizes/font_size = 30
 text = "Čas hry: 00:00:00"
 
-[node name="Button2" type="Button" parent="Panel/ButtonsPanel"]
+[node name="Button2" type="Button" parent="BottomMenu/ButtonsPanel"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 2
@@ -94,7 +154,12 @@ expand_icon = true
 
 [node name="TransitionAnimation" parent="." instance=ExtResource("4_f1ukc")]
 
-[connection signal="pressed" from="Panel/ButtonsPanel/Button" to="." method="ToLevelsMenu"]
-[connection signal="pressed" from="Panel/ButtonsPanel/Button2" to="." method="ResetGameScene"]
+[node name="TitleAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rymeo")
+}
+
+[connection signal="pressed" from="BottomMenu/ButtonsPanel/Button" to="." method="ToLevelsMenu"]
+[connection signal="pressed" from="BottomMenu/ButtonsPanel/Button2" to="." method="ResetGameScene"]
 [connection signal="timeout" from="Timer" to="." method="Timeout"]
 [connection signal="animation_finished" from="TransitionAnimation" to="." method="_on_transition_animation_animation_finished"]

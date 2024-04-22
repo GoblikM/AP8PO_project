@@ -21,6 +21,11 @@ public partial class GameLevel : Node2D
 
 	[Export]
 	TileMap TileMap { get; set; }
+	[Export]
+	PackedScene FinishPoint { get; set; }
+
+	[Export]
+	ChangeScene GameUiNode { get; set; }
 
 
 	private List<Piece> PiecesInstances { get; set; } = new List<Piece>();
@@ -36,6 +41,8 @@ public partial class GameLevel : Node2D
 	private List<Vector2> BlockTiles = new List<Vector2>();
 	private List<Vector2> OpenTiles = new List<Vector2>();
 	Vector2 FinishPointTile {get; set; }
+	Node FinishPointInstance { get; set; }
+	bool FinishReached = false;
 
 	private CanvasGroup PossibleMoves = new CanvasGroup();
 	private List<(int, int)> ActualMoves = new List<(int, int)>();
@@ -62,7 +69,10 @@ public partial class GameLevel : Node2D
 		// foreach(var tile in TileMap.GetUsedCells(1)){
 		// 	OpenTiles.Add(new Vector2(tile.X, tile.Y));
 		// }
+
 		FinishPointTile = TileMap.GetUsedCells(2)[0];
+		FinishPointInstance = FinishPoint.Instantiate();
+		TileMap.GetCellTileData(2, (Vector2I)FinishPointTile).Modulate = new Color(1,1,1,1);
 	}
 
 	private bool ArePiecesMoving()
@@ -83,43 +93,56 @@ public partial class GameLevel : Node2D
 	private int SelectedPieceIdTemp { get; set; } = -1;
 	public override void _Process(double delta)
 	{
-		if (SelectedPieceId < 0){
-			ChoosePieceWithClick();
-			return;
-		}
-		SelectedPieceIdTemp = SelectedPieceId;
+		if (!FinishReached){
+			if (SelectedPieceId < 0){
+				ChoosePieceWithClick();
+				return;
+			}
+			SelectedPieceIdTemp = SelectedPieceId;
 
-		Positions.Clear();
-		foreach(var piece in PiecesInstances){
-			Positions.Add(piece.GlobalPosition);
-		}
-		
-		if (ArePiecesMoving())
-		{
-			UpdateMap = true;
-		}
-		else
-		{
-			ChoosePieceWithClick();
-			if (UpdateMap == true || SelectedPieceId != SelectedPieceIdTemp){
-				CleanVariables();
-				SetMap();
-				MapArray = PiecesInstances[SelectedPieceId].GetMoves(GetSelectedPiecePosition(), MapArray);
-
-				UpdateMap = false;
-				ShowPossibleMoves();
+			Positions.Clear();
+			foreach(var piece in PiecesInstances){
+				Positions.Add(piece.GlobalPosition);
 			}
 			
-			MoveWithCorrectClick();
-			
-			if (GetSelectedPiecePosition().IsEqualApprox(FinishPointTile)){
-				GD.Print("KONEC");
+			if (ArePiecesMoving())
+			{
+				UpdateMap = true;
 			}
-		}
-		
-		TempPositions.Clear();
-		foreach(var piece in PiecesInstances){
-			TempPositions.Add(piece.GlobalPosition);
+			else
+			{
+				ChoosePieceWithClick();
+				if (UpdateMap == true || SelectedPieceId != SelectedPieceIdTemp){
+					CleanVariables();
+					SetMap();
+					MapArray = PiecesInstances[SelectedPieceId].GetMoves(GetSelectedPiecePosition(), MapArray);
+
+					UpdateMap = false;
+					ShowPossibleMoves();
+				}
+				MoveWithCorrectClick();
+				
+				if (GetSelectedPiecePosition().IsEqualApprox(FinishPointTile)){
+					FinishReached = true;
+
+					Vector2 pos = GetPositionInWord(FinishPointTile);
+					FinishPointInstance.Set("position", pos);
+					AddChild(FinishPointInstance);
+					TileMap.GetCellTileData(2, (Vector2I)FinishPointTile).Modulate = new Color(1,1,1,0);
+					FinishPointInstance.GetNode<AnimationPlayer>("AnimationPlayer").Play("finish_reached");
+				}
+			}
+			
+			TempPositions.Clear();
+			foreach(var piece in PiecesInstances){
+				TempPositions.Add(piece.GlobalPosition);
+			}
+		} else{
+			Vector2 p = (Vector2)FinishPointInstance.Get("position");
+			if (p.Y > (Constants.mapHeight * Constants.tileSize)){
+                string levelNumber = GetTree().CurrentScene.SceneFilePath.GetFile().GetBaseName().Replace("level", "");
+				GameUiNode.ToGameLevel("res://scenes/levels/level"+(levelNumber.ToInt()+1)+".tscn", true);
+			}
 		}
 	}
 
@@ -152,6 +175,12 @@ public partial class GameLevel : Node2D
 		
 		return new Vector2(x, y);
 	}
+	private Vector2 GetPositionInWord(Vector2 mapPoint){
+		int x = (int)Math.Ceiling(mapPoint.X * Constants.tileSize) + (Constants.tileSize/2);
+		int y = (int)Math.Ceiling(mapPoint.Y * Constants.tileSize) + (Constants.tileSize/2);
+		
+		return new Vector2(x, y);
+	}
 
 	private void ChoosePieceWithClick(){
 		Vector2 mousePos = GetViewport().GetMousePosition();
@@ -173,7 +202,6 @@ public partial class GameLevel : Node2D
 				SelectedPieceId = index.Index;
 				PiecesInstances[SelectedPieceId].Animate();
 			}
-			
 		}
 	}
 
