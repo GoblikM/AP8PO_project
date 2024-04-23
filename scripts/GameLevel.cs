@@ -46,7 +46,7 @@ public partial class GameLevel : Node2D
 
 	private CanvasGroup PossibleMoves = new CanvasGroup();
 	private List<(int, int)> ActualMoves = new List<(int, int)>();
-
+	private GameUtils GameUtils = new GameUtils();
 	public override void _Ready()
 	{
 		SetMap();
@@ -66,33 +66,19 @@ public partial class GameLevel : Node2D
 		foreach(var tile in TileMap.GetUsedCells(0)){
 			BlockTiles.Add(new Vector2(tile.X, tile.Y));
 		}
-		// foreach(var tile in TileMap.GetUsedCells(1)){
-		// 	OpenTiles.Add(new Vector2(tile.X, tile.Y));
-		// }
 
 		FinishPointTile = TileMap.GetUsedCells(2)[0];
 		FinishPointInstance = FinishPoint.Instantiate();
 		TileMap.GetCellTileData(2, (Vector2I)FinishPointTile).Modulate = new Color(1,1,1,1);
 	}
 
-	private bool ArePiecesMoving()
-	{
-		if (Positions.Count != TempPositions.Count)
-			return true;
-
-		for (int i = 0; i < Positions.Count; i++)
-		{
-			if (Positions[i] != TempPositions[i])
-				return true;
-		}
-
-		return false;
-	}
 
 	private bool UpdateMap { get; set; } = true;
 	private int SelectedPieceIdTemp { get; set; } = -1;
 	public override void _Process(double delta)
 	{
+		PossibleMoves = GameUtils.AnimatePossibleMoves(PossibleMoves);
+
 		if (!FinishReached){
 			if (SelectedPieceId < 0){
 				ChoosePieceWithClick();
@@ -105,27 +91,24 @@ public partial class GameLevel : Node2D
 				Positions.Add(piece.GlobalPosition);
 			}
 			
-			if (ArePiecesMoving())
-			{
+			if (GameUtils.ArePiecesMoving(Positions, TempPositions)){
 				UpdateMap = true;
-			}
-			else
-			{
+			} else{
 				ChoosePieceWithClick();
 				if (UpdateMap == true || SelectedPieceId != SelectedPieceIdTemp){
 					CleanVariables();
 					SetMap();
-					MapArray = PiecesInstances[SelectedPieceId].GetMoves(GetSelectedPiecePosition(), MapArray);
+					MapArray = PiecesInstances[SelectedPieceId].GetMoves(GameUtils.GetPositionInMap(PiecesInstances[SelectedPieceId]), MapArray);
 
 					UpdateMap = false;
 					ShowPossibleMoves();
 				}
 				MoveWithCorrectClick();
 				
-				if (GetSelectedPiecePosition().IsEqualApprox(FinishPointTile)){
+				if (GameUtils.GetPositionInMap(PiecesInstances[SelectedPieceId]).IsEqualApprox(FinishPointTile)){
 					FinishReached = true;
 
-					Vector2 pos = GetPositionInWord(FinishPointTile);
+					Vector2 pos = GameUtils.GetPositionInWord(FinishPointTile);
 					FinishPointInstance.Set("position", pos);
 					AddChild(FinishPointInstance);
 					TileMap.GetCellTileData(2, (Vector2I)FinishPointTile).Modulate = new Color(1,1,1,0);
@@ -146,41 +129,6 @@ public partial class GameLevel : Node2D
 		}
 	}
 
-
-	private void ShowPossibleMoves(){	
-		for (int x = 0; x < MapArray.GetLength(0); x++){
-			for (int y = 0; y < MapArray.GetLength(1); y++){
-				var value = MapArray[x, y];
-				if (value == BoardTileState.PIECE_MOVEMENT){
-					if (!ActualMoves.Contains((x, y))) {
-						ColorRect panel = new ColorRect();
-						panel.SetPosition(new Vector2(x * Constants.tileSize + Constants.tileSize/4, y * Constants.tileSize + Constants.tileSize/4));
-						panel.SetSize(new Vector2(Constants.tileSize/2, Constants.tileSize/2));
-						
-						Color color = new Color("#000000");
-						panel.Modulate = color;
-
-						PossibleMoves.AddChild(panel);
-						ActualMoves.Add((x, y));
-					}
-				}				
-			}
-		}
-	}
-
-
-	private Vector2 GetSelectedPiecePosition(){
-		int x = (int)Math.Ceiling(PiecesInstances[SelectedPieceId].GlobalPosition.X / Constants.tileSize) - 1;
-		int y = (int)Math.Ceiling(PiecesInstances[SelectedPieceId].GlobalPosition.Y / Constants.tileSize) - 1;
-		
-		return new Vector2(x, y);
-	}
-	private Vector2 GetPositionInWord(Vector2 mapPoint){
-		int x = (int)Math.Ceiling(mapPoint.X * Constants.tileSize) + (Constants.tileSize/2);
-		int y = (int)Math.Ceiling(mapPoint.Y * Constants.tileSize) + (Constants.tileSize/2);
-		
-		return new Vector2(x, y);
-	}
 
 	private void ChoosePieceWithClick(){
 		Vector2 mousePos = GetViewport().GetMousePosition();
@@ -204,7 +152,6 @@ public partial class GameLevel : Node2D
 			}
 		}
 	}
-
 	private void MoveWithCorrectClick(){
 		Vector2 mousePos = GetViewport().GetMousePosition();
 
@@ -217,6 +164,7 @@ public partial class GameLevel : Node2D
 			}
 		}
 	}
+
 
 	private void Move(int x, int y){
 		CleanVariables();
@@ -231,7 +179,6 @@ public partial class GameLevel : Node2D
 			piece.Rotate(0);
 		}
 	}
-
 	private void CleanVariables(){
 		foreach (Node child in PossibleMoves.GetChildren())
 		{
@@ -239,7 +186,6 @@ public partial class GameLevel : Node2D
 		}
 		ActualMoves.Clear();
 	}
-
 	private void SetMap(){
 		for (int x = 0; x < MapArray.GetLength(0); x++){
 			for (int y = 0; y < MapArray.GetLength(1); y++){
@@ -259,6 +205,21 @@ public partial class GameLevel : Node2D
 			int y = (int)Math.Ceiling(piece.GlobalPosition.Y / Constants.tileSize) - 1;
 
 			MapArray[x, y] = BoardTileState.BLOCKED;
+		}
+	}
+	private void ShowPossibleMoves(){	
+		for (int x = 0; x < MapArray.GetLength(0); x++){
+			for (int y = 0; y < MapArray.GetLength(1); y++){
+				var value = MapArray[x, y];
+				if (value == BoardTileState.PIECE_MOVEMENT){
+					if (!ActualMoves.Contains((x, y))) {
+                        Panel panel = GameUtils.CreatePossibleMovePanel(x, y, new Color("#000000"));
+						PossibleMoves.AddChild(panel);
+
+						ActualMoves.Add((x, y));
+					}
+				}				
+			}
 		}
 	}
 }
