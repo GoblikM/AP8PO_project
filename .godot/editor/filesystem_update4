@@ -1,9 +1,15 @@
-res://scenes/MenuScene.tscn
+res://scenes/levels/level5.tscn
 res://assets/2d_outline.gdshader
+res://scenes/levels/level4.tscn
+res://scenes/levels/level3.tscn
+res://scenes/levels/level2.tscn
+res://scenes/levels/level1.tscn
+res://scenes/levels/level7.tscn
+res://scenes/levels/level6.tscn
+res://scenes/MenuScene.tscn
 res://scenes/LevelsSelectScene.tscn
 res://scenes/GameUI.tscn
 res://prefabs/transition_animation.tscn
-res://scenes/levels/level6.tscn
 res://scripts/Bishop.cs
 res://scripts/ChangeScene.cs
 res://scripts/GameLevel.cs
@@ -17,3 +23,8 @@ res://scripts/Pawn.cs
 res://scripts/Piece.cs
 res://scripts/Queen.cs
 res://scripts/Rook.cs
+res://scenes/levels/level8.tscn
+res://scenes/levels/level9.tscn
+res://scenes/levels/level10.tscn
+res://scenes/levels/level11.tscn
+res://scenes/levels/level12.tscn

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://b1iy0bh0urbk4"]
 
-[ext_resource type="Texture2D" uid="uid://bwfqlx5jtgk72" path="res://assets/finish_point.png" id="1_cqjrv"]
+[ext_resource type="Texture2D" uid="uid://bwfqlx5jtgk72" path="res://assets/Tiles/finish_point.png" id="1_cqjrv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dduam"]
 size = Vector2(0, 89.7)

@@ -1,0 +1,83 @@
+[gd_scene load_steps=16 format=3 uid="uid://d213002s1osxr"]
+
+[ext_resource type="Script" path="res://scripts/GameLevel.cs" id="1_v2snr"]
+[ext_resource type="PackedScene" uid="uid://q8831qeehbrd" path="res://prefabs/Rook.tscn" id="2_bgy7n"]
+[ext_resource type="PackedScene" uid="uid://b1iy0bh0urbk4" path="res://prefabs/FinishPoint.tscn" id="3_tcoiv"]
+[ext_resource type="Script" path="res://scripts/GenerateBackgroud.cs" id="4_36v87"]
+[ext_resource type="Texture2D" uid="uid://btx4ksunnhx60" path="res://assets/Tiles/2.png" id="5_8vq1k"]
+[ext_resource type="Texture2D" uid="uid://cc1xt0e2pjao2" path="res://assets/Tiles/5.png" id="6_j6l1h"]
+[ext_resource type="Texture2D" uid="uid://b1wpe0m8rd5wm" path="res://assets/Tiles/grass_open.png" id="7_gtcse"]
+[ext_resource type="Texture2D" uid="uid://bwfqlx5jtgk72" path="res://assets/Tiles/finish_point.png" id="8_i6vwb"]
+[ext_resource type="PackedScene" uid="uid://dm2p25xlatw8j" path="res://scenes/GameUI.tscn" id="9_5qwur"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r8nfa"]
+size = Vector2(1440, 1)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l4jnk"]
+texture = ExtResource("5_8vq1k")
+texture_region_size = Vector2i(90, 90)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-45, -45, 45, -45, 45, -45, -45, -45)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lsa8u"]
+texture = ExtResource("6_j6l1h")
+texture_region_size = Vector2i(90, 90)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-45, -45, 45, -45, 45, -45, -45, -45)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v7ag4"]
+texture = ExtResource("7_gtcse")
+texture_region_size = Vector2i(90, 90)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-45, -45, 45, -45, 45, -45, -45, -45)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mw3hj"]
+texture = ExtResource("8_i6vwb")
+texture_region_size = Vector2i(90, 90)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSet" id="TileSet_3ygjg"]
+tile_size = Vector2i(90, 90)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_l4jnk")
+sources/1 = SubResource("TileSetAtlasSource_lsa8u")
+sources/2 = SubResource("TileSetAtlasSource_v7ag4")
+sources/3 = SubResource("TileSetAtlasSource_mw3hj")
+
+[node name="Game" type="Node2D" node_paths=PackedStringArray("TileMap", "GameUiNode")]
+script = ExtResource("1_v2snr")
+Pieces = Array[PackedScene]([ExtResource("2_bgy7n")])
+StartPositions = PackedVector2Array(4, 9)
+TileMap = NodePath("TileMap")
+FinishPoint = ExtResource("3_tcoiv")
+GameUiNode = NodePath("GameUi")
+
+[node name="Backgroud" type="CanvasGroup" parent="."]
+script = ExtResource("4_36v87")
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(720, 901)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+shape = SubResource("RectangleShape2D_r8nfa")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_3ygjg")
+format = 2
+layer_0/name = "Block"
+layer_0/tile_data = PackedInt32Array(589832, 0, 0, 458764, 0, 0, 393221, 1, 0, 393220, 1, 0, 327685, 1, 0, 262149, 1, 0, 196613, 0, 0, 196622, 0, 0, 65546, 0, 0, 131082, 1, 0, 196618, 1, 0, 262154, 1, 0, 327690, 1, 0, 655368, 1, 0, 655360, 0, 0, 655361, 0, 0, 655362, 0, 0, 655363, 0, 0, 655364, 0, 0, 655365, 0, 0, 655366, 0, 0, 655367, 0, 0, 655369, 0, 0, 655370, 0, 0, 655371, 0, 0, 655372, 0, 0, 655373, 0, 0, 655374, 0, 0, 655375, 0, 0)
+layer_1/name = "Open"
+layer_1/tile_data = PackedInt32Array(196612, 2, 0, 393218, 2, 0, 458760, 2, 0, 196620, 2, 0)
+layer_2/name = "FinishPoint"
+layer_2/modulate = Color(1, 0, 0, 1)
+layer_2/tile_data = PackedInt32Array(131086, 3, 0)
+
+[node name="GameUi" parent="." instance=ExtResource("9_5qwur")]
