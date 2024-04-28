@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dapwcy4dm1oer"
-path="res://.godot/imported/knight_s.png-bf851c4b814192db5a00ad030e6998c8.ctex"
+uid="uid://4ve1w1jdrrk7"
+path="res://.godot/imported/btnLong.png-f73a7d796ace57330bb3d1c9f0eb9113.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/pieces/knight_s.png"
-dest_files=["res://.godot/imported/knight_s.png-bf851c4b814192db5a00ad030e6998c8.ctex"]
+source_file="res://assets/buttons/btnLong.png"
+dest_files=["res://.godot/imported/btnLong.png-f73a7d796ace57330bb3d1c9f0eb9113.ctex"]
 
 [params]
 

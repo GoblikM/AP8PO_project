@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://es601o2g55lt"
-path="res://.godot/imported/bishop_s.png-27c4c2e943e9b467a4b01fe7a897eaec.ctex"
+uid="uid://cbyythiajlbcx"
+path="res://.godot/imported/btnMusicOff.png-8b71e211efae0622c272763d77c12870.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/pieces/bishop_s.png"
-dest_files=["res://.godot/imported/bishop_s.png-27c4c2e943e9b467a4b01fe7a897eaec.ctex"]
+source_file="res://assets/buttons/btnMusicOff.png"
+dest_files=["res://.godot/imported/btnMusicOff.png-8b71e211efae0622c272763d77c12870.ctex"]
 
 [params]
 

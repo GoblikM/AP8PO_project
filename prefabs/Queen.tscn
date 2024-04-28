@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://ce8c7vpuakoww"]
 
-[ext_resource type="Texture2D" uid="uid://c5huu1hyxhim5" path="res://assets/pieces/queen_s.png" id="1_07c4o"]
 [ext_resource type="Script" path="res://scripts/Queen.cs" id="1_afjih"]
+[ext_resource type="Texture2D" uid="uid://kvc5y6uorga8" path="res://assets/pieces/Queen.png" id="2_25hgq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6i8wr"]
 size = Vector2(50, 89.7)
@@ -36,7 +36,7 @@ Animation = NodePath("AnimationPlayer")
 shape = SubResource("RectangleShape2D_6i8wr")
 
 [node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
-texture = ExtResource("1_07c4o")
+texture = ExtResource("2_25hgq")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

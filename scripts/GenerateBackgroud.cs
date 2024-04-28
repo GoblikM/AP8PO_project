@@ -15,7 +15,7 @@ public partial class GenerateBackgroud : CanvasGroup
 				panel.SetPosition(new Vector2(h * Constants.tileSize, v * Constants.tileSize));
 				panel.SetSize(new Vector2(Constants.tileSize, Constants.tileSize));
 				
-				Color color = (v+h)%2==0 ? new Color("#964d22") : new Color("#ffffff");
+				Color color = (v+h)%2==0 ? new Color("#964d22") : new Color("#f8e7bb");
 				panel.Modulate = color;
 
 				AddChild(panel);

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dabasjpptm7f7"]
 
-[ext_resource type="Texture2D" uid="uid://cdhepmc157ucc" path="res://assets/pieces/pawn_s.png" id="1_4nvc4"]
 [ext_resource type="Script" path="res://scripts/Pawn.cs" id="1_y5yg8"]
+[ext_resource type="Texture2D" uid="uid://dwe3hpapaaiup" path="res://assets/pieces/Pawn.png" id="2_y6upp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4bm3n"]
 size = Vector2(55, 89.7)
@@ -36,7 +36,7 @@ Animation = NodePath("AnimationPlayer")
 shape = SubResource("RectangleShape2D_4bm3n")
 
 [node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
-texture = ExtResource("1_4nvc4")
+texture = ExtResource("2_y6upp")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

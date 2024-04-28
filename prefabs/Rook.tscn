@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://q8831qeehbrd"]
 
 [ext_resource type="Script" path="res://scripts/Rook.cs" id="1_37e4t"]
-[ext_resource type="Texture2D" uid="uid://dksvj4vaftyd5" path="res://assets/pieces/rook_s.png" id="1_g0cn1"]
+[ext_resource type="Texture2D" uid="uid://cmcfg20k1x3i5" path="res://assets/pieces/Rook.png" id="2_d4onw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p1xkf"]
 size = Vector2(60, 89.7)
@@ -36,7 +36,7 @@ Animation = NodePath("AnimationPlayer")
 shape = SubResource("RectangleShape2D_p1xkf")
 
 [node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
-texture = ExtResource("1_g0cn1")
+texture = ExtResource("2_d4onw")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../CollisionShape2D")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://d5xs57e28chr"]
 
 [ext_resource type="Script" path="res://scripts/Bishop.cs" id="1_k3xkr"]
-[ext_resource type="Texture2D" uid="uid://es601o2g55lt" path="res://assets/pieces/bishop_s.png" id="1_kqc04"]
+[ext_resource type="Texture2D" uid="uid://bwym7yx7t18xu" path="res://assets/pieces/Bishop.png" id="2_5jbdq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y1hou"]
 size = Vector2(50, 89.7)
@@ -36,7 +36,7 @@ Animation = NodePath("AnimationPlayer")
 shape = SubResource("RectangleShape2D_y1hou")
 
 [node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
-texture = ExtResource("1_kqc04")
+texture = ExtResource("2_5jbdq")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

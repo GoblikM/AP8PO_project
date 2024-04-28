@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cdhepmc157ucc"
-path="res://.godot/imported/pawn_s.png-2a0956b91c791ecb017019ec24ec3fa6.ctex"
+uid="uid://d2l0pkopy0nhk"
+path="res://.godot/imported/btnMusicOn.png-446e9bff86ffd6b2cb8dcd6cdf4de82f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/pieces/pawn_s.png"
-dest_files=["res://.godot/imported/pawn_s.png-2a0956b91c791ecb017019ec24ec3fa6.ctex"]
+source_file="res://assets/buttons/btnMusicOn.png"
+dest_files=["res://.godot/imported/btnMusicOn.png-446e9bff86ffd6b2cb8dcd6cdf4de82f.ctex"]
 
 [params]
 
