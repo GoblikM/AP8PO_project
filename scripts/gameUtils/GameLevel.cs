@@ -19,6 +19,7 @@ public partial class GameLevel : Node2D
 	[Export]
 	ChangeScene GameUiNode { get; set; }
 	AudioStreamPlayer MusicEffectsPlayer { get; set; }
+	private string ActiveSoundPath { get; set; }
 
 	private List<Piece> PiecesInstances { get; set; } = new List<Piece>();
 	private int SelectedPieceId { get; set; } = -1;
@@ -86,13 +87,15 @@ public partial class GameLevel : Node2D
 			
 			if (GameUtils.ArePiecesMoving(Positions, TempPositions)){
 				if (!MusicEffectsPlayer.Playing){
-					MusicEffectsPlayer.Stream = GD.Load<AudioStream>("res://assets/music/falling_sound.mp3");
+					ActiveSoundPath = "res://assets/music/falling_sound.mp3";
+					MusicEffectsPlayer.Stream = GD.Load<AudioStream>(ActiveSoundPath);
 					MusicEffectsPlayer.Play();
 				}
 				UpdateMap = true;
 			} else{
-				MusicEffectsPlayer.Stop();
-				
+				if (ActiveSoundPath.Contains("falling")){
+					MusicEffectsPlayer.Stop();
+				}
 				ChoosePieceWithClick();
 				if (UpdateMap == true || SelectedPieceId != SelectedPieceIdTemp){
 					CleanVariables();
@@ -149,7 +152,9 @@ public partial class GameLevel : Node2D
 				SelectedPieceId = index.Index;
 				PiecesInstances[SelectedPieceId].Animate();
 
-				MusicEffectsPlayer.Stream = GD.Load<AudioStream>(PiecesInstances[SelectedPieceId].SoundPath);
+				MusicEffectsPlayer.Stop();
+				ActiveSoundPath = PiecesInstances[SelectedPieceId].SoundPath;
+				MusicEffectsPlayer.Stream = GD.Load<AudioStream>(ActiveSoundPath);
 				MusicEffectsPlayer.Play();
 			}
 		}
@@ -170,7 +175,8 @@ public partial class GameLevel : Node2D
 
 	private void Move(int x, int y){
 		if (!MusicEffectsPlayer.Playing){
-			MusicEffectsPlayer.Stream = GD.Load<AudioStream>("res://assets/music/move_sound.mp3");
+			ActiveSoundPath = "res://assets/music/move_sound.mp3";
+			MusicEffectsPlayer.Stream = GD.Load<AudioStream>(ActiveSoundPath);
 			MusicEffectsPlayer.Play();
 		}
 
