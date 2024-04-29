@@ -1,10 +1,10 @@
 [gd_scene load_steps=17 format=3 uid="uid://c5g5usibh3g36"]
 
-[ext_resource type="Script" path="res://scripts/GameLevel.cs" id="1_kn066"]
+[ext_resource type="Script" path="res://scripts/gameUtils/GameLevel.cs" id="1_kn066"]
 [ext_resource type="PackedScene" uid="uid://dabasjpptm7f7" path="res://prefabs/Pawn.tscn" id="3_aogl0"]
 [ext_resource type="PackedScene" uid="uid://dpjr8xvkuwcjk" path="res://prefabs/King.tscn" id="4_0vnl7"]
 [ext_resource type="PackedScene" uid="uid://b1iy0bh0urbk4" path="res://prefabs/FinishPoint.tscn" id="6_7yhpu"]
-[ext_resource type="Script" path="res://scripts/GenerateBackgroud.cs" id="7_a83l3"]
+[ext_resource type="Script" path="res://scripts/gameUtils/GenerateBackgroud.cs" id="7_a83l3"]
 [ext_resource type="Texture2D" uid="uid://btx4ksunnhx60" path="res://assets/Tiles/2.png" id="8_8l7k7"]
 [ext_resource type="Texture2D" uid="uid://cc1xt0e2pjao2" path="res://assets/Tiles/5.png" id="9_d22oe"]
 [ext_resource type="Texture2D" uid="uid://b1wpe0m8rd5wm" path="res://assets/Tiles/grass_open.png" id="10_k2srq"]

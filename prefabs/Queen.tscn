@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://ce8c7vpuakoww"]
 
-[ext_resource type="Script" path="res://scripts/Queen.cs" id="1_afjih"]
+[ext_resource type="Script" path="res://scripts/piecesUtils/Queen.cs" id="1_afjih"]
 [ext_resource type="Texture2D" uid="uid://kvc5y6uorga8" path="res://assets/pieces/Queen.png" id="2_25hgq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6i8wr"]

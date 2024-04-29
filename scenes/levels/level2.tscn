@@ -1,8 +1,8 @@
 [gd_scene load_steps=18 format=3 uid="uid://crfemkh38es4k"]
 
-[ext_resource type="Script" path="res://scripts/GameLevel.cs" id="1_t2uwk"]
+[ext_resource type="Script" path="res://scripts/gameUtils/GameLevel.cs" id="1_t2uwk"]
 [ext_resource type="PackedScene" uid="uid://q8831qeehbrd" path="res://prefabs/Rook.tscn" id="2_0eme2"]
-[ext_resource type="Script" path="res://scripts/GenerateBackgroud.cs" id="3_l2op4"]
+[ext_resource type="Script" path="res://scripts/gameUtils/GenerateBackgroud.cs" id="3_l2op4"]
 [ext_resource type="PackedScene" uid="uid://b1iy0bh0urbk4" path="res://prefabs/FinishPoint.tscn" id="3_qt4ru"]
 [ext_resource type="Texture2D" uid="uid://l1kg8fi3trng" path="res://assets/Tiles/obj_crate001.png" id="14_8w525"]
 [ext_resource type="Texture2D" uid="uid://duj06yhvpwmax" path="res://assets/Tiles/obj_crate002.png" id="15_0tjip"]

@@ -1,9 +1,9 @@
 [gd_scene load_steps=16 format=3 uid="uid://dp4j6vudsox7o"]
 
-[ext_resource type="Script" path="res://scripts/GameLevel.cs" id="1_hjqwy"]
+[ext_resource type="Script" path="res://scripts/gameUtils/GameLevel.cs" id="1_hjqwy"]
 [ext_resource type="PackedScene" uid="uid://bgr5klqhp6rcl" path="res://prefabs/Knight.tscn" id="2_2l0se"]
 [ext_resource type="PackedScene" uid="uid://b1iy0bh0urbk4" path="res://prefabs/FinishPoint.tscn" id="3_6ligm"]
-[ext_resource type="Script" path="res://scripts/GenerateBackgroud.cs" id="4_e0t5i"]
+[ext_resource type="Script" path="res://scripts/gameUtils/GenerateBackgroud.cs" id="4_e0t5i"]
 [ext_resource type="Texture2D" uid="uid://btx4ksunnhx60" path="res://assets/Tiles/2.png" id="5_0c4y2"]
 [ext_resource type="Texture2D" uid="uid://cc1xt0e2pjao2" path="res://assets/Tiles/5.png" id="6_r55so"]
 [ext_resource type="Texture2D" uid="uid://b1wpe0m8rd5wm" path="res://assets/Tiles/grass_open.png" id="7_s457l"]

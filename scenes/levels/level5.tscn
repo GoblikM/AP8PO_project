@@ -1,10 +1,10 @@
 [gd_scene load_steps=19 format=3 uid="uid://dndady08bayks"]
 
-[ext_resource type="Script" path="res://scripts/GameLevel.cs" id="1_37ej4"]
+[ext_resource type="Script" path="res://scripts/gameUtils/GameLevel.cs" id="1_37ej4"]
 [ext_resource type="PackedScene" uid="uid://dpjr8xvkuwcjk" path="res://prefabs/King.tscn" id="3_yd3np"]
 [ext_resource type="PackedScene" uid="uid://d5xs57e28chr" path="res://prefabs/Bishop.tscn" id="3_ynsx1"]
 [ext_resource type="PackedScene" uid="uid://b1iy0bh0urbk4" path="res://prefabs/FinishPoint.tscn" id="4_0jwn7"]
-[ext_resource type="Script" path="res://scripts/GenerateBackgroud.cs" id="4_p1ppu"]
+[ext_resource type="Script" path="res://scripts/gameUtils/GenerateBackgroud.cs" id="4_p1ppu"]
 [ext_resource type="Texture2D" uid="uid://l1kg8fi3trng" path="res://assets/Tiles/obj_crate001.png" id="15_jp14c"]
 [ext_resource type="Texture2D" uid="uid://duj06yhvpwmax" path="res://assets/Tiles/obj_crate002.png" id="16_2bd7q"]
 [ext_resource type="Texture2D" uid="uid://cy1pafr8c4ryd" path="res://assets/Tiles/obj_crate003.png" id="18_a1mal"]

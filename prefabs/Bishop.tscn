@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://d5xs57e28chr"]
+[gd_scene load_steps=7 format=3 uid="uid://d5xs57e28chr"]
 
-[ext_resource type="Script" path="res://scripts/Bishop.cs" id="1_k3xkr"]
+[ext_resource type="Script" path="res://scripts/piecesUtils/Bishop.cs" id="1_k3xkr"]
 [ext_resource type="Texture2D" uid="uid://bwym7yx7t18xu" path="res://assets/pieces/Bishop.png" id="2_5jbdq"]
+[ext_resource type="AudioStream" uid="uid://b0fracwj0vvdn" path="res://assets/music/move_sound.mp3" id="2_rq033"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y1hou"]
 size = Vector2(50, 89.7)
@@ -31,6 +32,9 @@ _data = {
 lock_rotation = true
 script = ExtResource("1_k3xkr")
 Animation = NodePath("AnimationPlayer")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_rq033")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_y1hou")

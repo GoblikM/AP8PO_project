@@ -1,5 +1,7 @@
-Label
+AudioStreamPlayer2D
+AudioStreamPlayer
 VBoxContainer
+Label
 HSlider
 HBoxContainer
 Button
@@ -11,4 +13,3 @@ Node
 CollisionShape2D
 RigidBody2D
 AnimationTree
-BoxContainer

@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://dm2p25xlatw8j"]
 
-[ext_resource type="Script" path="res://scripts/GameUI.cs" id="1_lwyt7"]
+[ext_resource type="Script" path="res://scripts/gameUtils/GameUI.cs" id="1_lwyt7"]
 [ext_resource type="Texture2D" uid="uid://bolkpo34kwgkr" path="res://assets/buttons/btnMenu.png" id="2_688t1"]
 [ext_resource type="Texture2D" uid="uid://c25jc4qm64ybp" path="res://assets/buttons/btnRestart.png" id="2_dre1m"]
 [ext_resource type="FontFile" uid="uid://cwgdhmo3tbmnj" path="res://Font/Rubik-Bold.ttf" id="2_st073"]
@@ -160,6 +160,9 @@ expand_icon = true
 libraries = {
 "": SubResource("AnimationLibrary_rymeo")
 }
+
+[node name="MusicEffectsPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"SoundEFX"
 
 [connection signal="pressed" from="BottomMenu/ButtonsPanel/Button" to="." method="ToLevelsMenu"]
 [connection signal="pressed" from="BottomMenu/ButtonsPanel/Button2" to="." method="ResetGameScene"]
