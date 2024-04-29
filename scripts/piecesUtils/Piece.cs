@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Godot;
 
 
@@ -5,7 +6,8 @@ public abstract partial class Piece : RigidBody2D
 {
     public abstract BoardTileState[,] GetMoves(Vector2 actualPos, BoardTileState[,] mapArray);
 
-    public abstract void SayHello();
+	public abstract string SoundPath { get; }
+
 
 	[Export]
 	AnimationPlayer Animation { get; set; }

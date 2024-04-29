@@ -1,10 +1,10 @@
 [gd_scene load_steps=2 format=3 uid="uid://c1m3vli8haang"]
 
-[ext_resource type="AudioStream" uid="uid://r8fdo605tkht" path="res://assets/music/cuestiones-119653.mp3" id="1_olmds"]
+[ext_resource type="AudioStream" uid="uid://burngl03iojhf" path="res://assets/music/music.mp3" id="1_rbxq4"]
 
 [node name="MusicScene" type="Node2D"]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("1_olmds")
+stream = ExtResource("1_rbxq4")
 autoplay = true
 bus = &"Music"

@@ -48,7 +48,6 @@ public partial class GameLevel : Node2D
 		foreach (var (item, index) in Pieces.Select((item, index) => (item, index))){
 			Piece pi = (Piece)item.Instantiate();
 
-			pi.SayHello();
 			PiecesInstances.Add(pi);	
 			PiecesInstances[index].Set("position", new Vector2(StartPositions[index].X * Constants.tileSize + (Constants.tileSize/2), StartPositions[index].Y * Constants.tileSize + (Constants.tileSize/2)));
 			AddChild(pi);		
@@ -86,8 +85,14 @@ public partial class GameLevel : Node2D
 			}
 			
 			if (GameUtils.ArePiecesMoving(Positions, TempPositions)){
+				if (!MusicEffectsPlayer.Playing){
+					MusicEffectsPlayer.Stream = GD.Load<AudioStream>("res://assets/music/falling_sound.mp3");
+					MusicEffectsPlayer.Play();
+				}
 				UpdateMap = true;
 			} else{
+				MusicEffectsPlayer.Stop();
+				
 				ChoosePieceWithClick();
 				if (UpdateMap == true || SelectedPieceId != SelectedPieceIdTemp){
 					CleanVariables();
@@ -143,6 +148,9 @@ public partial class GameLevel : Node2D
 			{
 				SelectedPieceId = index.Index;
 				PiecesInstances[SelectedPieceId].Animate();
+
+				MusicEffectsPlayer.Stream = GD.Load<AudioStream>(PiecesInstances[SelectedPieceId].SoundPath);
+				MusicEffectsPlayer.Play();
 			}
 		}
 	}
@@ -161,8 +169,10 @@ public partial class GameLevel : Node2D
 
 
 	private void Move(int x, int y){
-		MusicEffectsPlayer.Stream = GD.Load<AudioStream>("res://assets/music/move_sound.mp3");
-		MusicEffectsPlayer.Play();
+		if (!MusicEffectsPlayer.Playing){
+			MusicEffectsPlayer.Stream = GD.Load<AudioStream>("res://assets/music/move_sound.mp3");
+			MusicEffectsPlayer.Play();
+		}
 
 		CleanVariables();
 		SetMap();

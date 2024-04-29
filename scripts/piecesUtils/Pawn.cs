@@ -3,10 +3,7 @@ using Godot;
 
 partial class Pawn : Piece
 {
-    public override void _Ready()
-	{
-        GD.Print("PAWN");
-    }
+    public override string SoundPath { get =>"res://assets/music/pawn_sound.wav"; }
 
     public override BoardTileState[,] GetMoves(Vector2 actualPos, BoardTileState[,] mapArray)
     {
@@ -19,10 +16,5 @@ partial class Pawn : Piece
         }
         
         return mapArray;
-    }
-
-    public override void SayHello()
-    {
-        GD.Print("Hello from PAWN");
     }
 }

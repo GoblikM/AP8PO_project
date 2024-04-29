@@ -34,6 +34,11 @@ public partial class ChangeScene : Node
 
 	public void ToGameLevel(String sceneName, bool fromLevel=false){
 		if (ResourceLoader.Exists(sceneName)){
+			if (!fromLevel){
+				var LevelSelectSound = GetNode("/root/LevelSelectSound").GetChild<AudioStreamPlayer>(0);
+				LevelSelectSound.Play();
+			}
+
 			TransitionAnimation.Play("fade_out");
 			To = sceneName;
 		}

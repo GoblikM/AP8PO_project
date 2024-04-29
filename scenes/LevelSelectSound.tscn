@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dtjwsk85fcbhm"]
+
+[ext_resource type="AudioStream" uid="uid://vthv1i6stn4b" path="res://assets/music/chessmaster_sound.mp3" id="1_xymf8"]
+
+[node name="LevelSelectSound" type="Node2D"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_xymf8")
+bus = &"SoundEFX"

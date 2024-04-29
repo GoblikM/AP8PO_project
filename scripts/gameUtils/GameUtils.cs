@@ -13,7 +13,7 @@ public class GameUtils{
         panel.AddThemeStyleboxOverride("panel", styleBox);
 
         panel.Modulate = color;
-
+        
         return panel;
     }
 

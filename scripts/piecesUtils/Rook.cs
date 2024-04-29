@@ -2,10 +2,7 @@ using Godot;
 
 partial class Rook : Piece
 {
-    public override void _Ready()
-	{
-        GD.Print("Rook");
-    }
+    public override string SoundPath { get =>"res://assets/music/rook_sound.wav"; }
 
     public override BoardTileState[,] GetMoves(Vector2 actualPos, BoardTileState[,] mapArray)
     {	
@@ -16,10 +13,5 @@ partial class Rook : Piece
 		mapArray = MovementAxisY(actualPos, mapArray);
 
         return mapArray;
-    }
-
-    public override void SayHello()
-    {
-        GD.Print("Hello from ROOK");
     }
 }

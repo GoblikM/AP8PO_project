@@ -2,10 +2,7 @@ using Godot;
 
 partial class Queen : Piece
 {
-    public override void _Ready()
-	{
-        GD.Print("Queen");
-    }
+    public override string SoundPath { get =>"res://assets/music/queen_sound.wav"; }
 
     public override BoardTileState[,] GetMoves(Vector2 actualPos, BoardTileState[,] mapArray)
     {
@@ -19,10 +16,5 @@ partial class Queen : Piece
         mapArray = MovementDiagonal(actualPos, mapArray);
 
         return mapArray;
-    }
-
-    public override void SayHello()
-    {
-        GD.Print("Hello from Queen");
     }
 }

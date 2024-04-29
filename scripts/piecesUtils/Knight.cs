@@ -3,10 +3,7 @@ using System;
 
 partial class Knight : Piece
 {
-    public override void _Ready()
-	{
-        GD.Print("Knight");
-    }
+    public override string SoundPath { get =>"res://assets/music/knight_sound.wav"; }
 
     public override BoardTileState[,] GetMoves(Vector2 actualPos, BoardTileState[,] mapArray)
     {
@@ -31,10 +28,5 @@ partial class Knight : Piece
 		}
 
         return mapArray;
-    }
-
-    public override void SayHello()
-    {
-        GD.Print("Hello from Knight");
     }
 }
