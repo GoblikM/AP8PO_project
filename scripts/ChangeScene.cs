@@ -53,4 +53,9 @@ public partial class ChangeScene : Node
 			GetTree().ChangeSceneToFile(To);
 		}
 	}
+
+
+	public void Quit(){
+		GetTree().Quit();
+	}
 }

@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://b1iy0bh0urbk4"]
+[gd_scene load_steps=6 format=3 uid="uid://b1iy0bh0urbk4"]
 
 [ext_resource type="Texture2D" uid="uid://bwfqlx5jtgk72" path="res://assets/Tiles/finish_point.png" id="1_cqjrv"]
+[ext_resource type="AudioStream" uid="uid://herg77a6gj4d" path="res://assets/music/finish_sound.mp3" id="2_b3gmi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dduam"]
 size = Vector2(0, 89.7)
@@ -79,5 +80,7 @@ libraries = {
 "": SubResource("AnimationLibrary_2sd38")
 }
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="Sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_b3gmi")
+volume_db = 24.0
 bus = &"SoundEFX"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bk08woxpyyun"]
+[gd_scene load_steps=24 format=3 uid="uid://bk08woxpyyun"]
 
 [ext_resource type="Script" path="res://scripts/ChangeScene.cs" id="1_5ii8m"]
 [ext_resource type="Texture2D" uid="uid://docl4qqlcs0k5" path="res://assets/Designer.jpeg" id="2_cb31x"]
@@ -66,6 +66,20 @@ font_size = 45
 outline_size = 1
 shadow_size = 10
 shadow_color = Color(0, 0.372549, 0.529412, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qllct"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i0p0v"]
+content_margin_left = 1.0
+content_margin_top = 1.0
+content_margin_right = 1.0
+content_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b738q"]
 
 [node name="MenuScene" type="Node" node_paths=PackedStringArray("TransitionAnimation")]
 script = ExtResource("1_5ii8m")
@@ -256,9 +270,13 @@ value = 0.5
 [node name="Creators" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="Label3" type="Label" parent="VBoxContainer/Creators"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Creators"]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="VBoxContainer/Creators/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 10
@@ -267,6 +285,22 @@ Bc. Jiří Daberger
 Bc. Martin Goldbach"
 label_settings = SubResource("LabelSettings_njfuh")
 
+[node name="QuitButton" type="Button" parent="VBoxContainer/Creators/HBoxContainer"]
+custom_minimum_size = Vector2(250, 100)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("3_vad0d")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = SubResource("StyleBoxEmpty_qllct")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_i0p0v")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_b738q")
+text = "Odejít"
+icon = ExtResource("4_528r1")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
 [node name="TransitionAnimation" parent="." instance=ExtResource("5_3qdp7")]
 
 [connection signal="pressed" from="VBoxContainer/VBoxContainer/Button2" to="." method="ToLevelsMenu"]
@@ -274,4 +308,5 @@ label_settings = SubResource("LabelSettings_njfuh")
 [connection signal="value_changed" from="VBoxContainer/VBoxContainer/Settings/MUSIC/musicMenu/VBoxContainer/musicSlider" to="VBoxContainer/VBoxContainer/Settings/MUSIC/musicMenu" method="_on_slider_value_changed"]
 [connection signal="pressed" from="VBoxContainer/VBoxContainer/Settings/SOUNDEFX/soundMenu/soundToggleButton" to="VBoxContainer/VBoxContainer/Settings/SOUNDEFX/soundMenu" method="_on_toggle_button_pressed"]
 [connection signal="value_changed" from="VBoxContainer/VBoxContainer/Settings/SOUNDEFX/soundMenu/VBoxContainer/soundSlider" to="VBoxContainer/VBoxContainer/Settings/SOUNDEFX/soundMenu" method="_on_slider_value_changed"]
+[connection signal="pressed" from="VBoxContainer/Creators/HBoxContainer/QuitButton" to="." method="Quit"]
 [connection signal="animation_finished" from="TransitionAnimation" to="." method="_on_transition_animation_animation_finished"]

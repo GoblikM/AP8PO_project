@@ -67,8 +67,8 @@ sources/24 = SubResource("TileSetAtlasSource_1eejq")
 script = ExtResource("1_sdli2")
 Pieces = Array[PackedScene]([ExtResource("4_5cli7")])
 StartPositions = PackedVector2Array(1, 4)
-TileMap = NodePath("TileMap")
 FinishPoint = ExtResource("3_5i5vn")
+TileMap = NodePath("TileMap")
 GameUiNode = NodePath("GameUi")
 
 [node name="Backgroud" type="CanvasGroup" parent="."]

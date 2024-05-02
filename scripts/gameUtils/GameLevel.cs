@@ -43,6 +43,7 @@ public partial class GameLevel : Node2D
 	public override void _Ready()
 	{
 		MusicEffectsPlayer = GameUiNode.GetNode<AudioStreamPlayer>("MusicEffectsPlayer");
+		MusicEffectsPlayer.VolumeDb = 12;
 
 		SetMap();
 
@@ -115,6 +116,7 @@ public partial class GameLevel : Node2D
 					AddChild(FinishPointInstance);
 					TileMap.GetCellTileData(2, (Vector2I)FinishPointTile).Modulate = new Color(1,1,1,0);
 					FinishPointInstance.GetNode<AnimationPlayer>("AnimationPlayer").Play("finish_reached");
+					FinishPointInstance.GetNode<AudioStreamPlayer2D>("Sound").Play();
 				}
 			}
 			

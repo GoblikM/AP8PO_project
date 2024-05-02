@@ -1,11 +1,11 @@
+HBoxContainer
+MarginContainer
+Button
 AudioStreamPlayer
 AudioStreamPlayer2D
 VBoxContainer
 Label
 HSlider
-HBoxContainer
-Button
-MarginContainer
 Sprite2D
 AnimationPlayer
 Panel
